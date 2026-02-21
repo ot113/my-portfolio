@@ -1,0 +1,84 @@
+[
+  {
+    "id": "where-is-azrael",
+    "title": "Where is Azrael?",
+    "description": "Personal project featuring a custom dialog system, boss fight, and environment design.",
+    "role": "Game Designer, Developer",
+    "year": 2024,
+    "tags": [
+      "Unity",
+      "Narrative Design",
+      "Level Design",
+      "Game Mechanics"
+    ],
+    "thumbnail": "/images/projects/araroi-thumb.jpg",
+    "images": [
+      "/images/projects/araroi-1.jpg",
+      "/images/projects/araroi-2.jpg"
+    ],
+    "overview": "## Where is Azrael?\n\nA personal project exploring deep narrative systems and combat mechanics in Unity.\n\n### Implementation Details\n- **Dialog System**: Branching narrative with state-dependent responses.\n- **Boss Fight**: Systems-driven combat encounter.\n- **Environment Design**: Storytelling through spatial layout.",
+    "technologies": [
+      "Unity",
+      "C#"
+    ],
+    "links": {
+      "github": "https://github.com/oguzcan",
+      "demo": ""
+    },
+    "featured": true
+  },
+  {
+    "id": "cardtower-gdd",
+    "title": "CardTower GDD",
+    "description": "Comprehensive Game Design Document for a mobile card tower defense game, created during internship at UDO Games.",
+    "role": "Game Designer",
+    "year": 2024,
+    "tags": [
+      "Game Design Document",
+      "Game Mechanics",
+      "Mobile"
+    ],
+    "thumbnail": "/images/projects/cardtower-thumb.jpg",
+    "images": [
+      "/images/projects/cardtower-1.jpg"
+    ],
+    "overview": "## Overview\n\nCardTower is a GDD for a mobile-first card tower defense hybrid. Players draw cards each turn to place towers, cast spells, and adapt to procedurally generated enemy waves.\n\n## Key Systems\n\n- Card draw and hand management\n- Tower placement and synergy system\n- Economy and upgrade loop\n- Procedural difficulty scaling\n\n## Design Philosophy\n\nThe goal was to create a game that rewards planning without punishing beginners. Each design decision was tested against three player archetypes: casual, mid-core, and competitive.",
+    "technologies": [
+      "Google Docs",
+      "Figma",
+      "Miro"
+    ],
+    "links": {
+      "external": ""
+    },
+    "featured": false
+  },
+  {
+    "id": "gmtk-2024",
+    "title": "GMTK Game Jam 2024",
+    "description": "A 48-hour game jam entry focused on emergent mechanics and level design around the theme 'Built to Scale'.",
+    "role": "Game Designer, Level Designer",
+    "year": 2024,
+    "tags": [
+      "Game Mechanics",
+      "Level Design",
+      "Game Jam",
+      "Unity"
+    ],
+    "thumbnail": "/images/projects/gmtk-thumb.jpg",
+    "images": [
+      "/images/projects/gmtk-1.jpg",
+      "/images/projects/gmtk-2.jpg"
+    ],
+    "overview": "## Overview\n\nCreated in 48 hours for GMTK Game Jam 2024 around the theme 'Built to Scale'. The game challenges players to resize objects to solve physics-based puzzles.\n\n## Design Constraints\n\nWorking within a 48-hour window required rapid prototyping and disciplined scope management. Core mechanics were locked at hour 4, allowing the remaining time to be spent on level design and polish.\n\n## Levels\n\nFive levels were designed, each introducing a new interaction between the scale mechanic and environmental hazards.",
+    "technologies": [
+      "Unity",
+      "C#",
+      "Aseprite"
+    ],
+    "links": {
+      "external": "https://itch.io"
+    },
+    "featured": false
+  }
+]

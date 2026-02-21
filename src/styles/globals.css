@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/* Dark mode via .dark class on <html> */
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f8f7f4;
+  --bg-secondary: #f0ede8;
+  --text: #1a1a1a;
+  --text-muted: #6b7280;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --border: #e5e7eb;
+  --card-bg: #ffffff;
+  --sidebar-bg: #1e293b;
+  --sidebar-text: #e2e8f0;
+  --sidebar-active-border: #3b82f6;
+  --sidebar-active-bg: rgba(59,130,246,0.12);
+}
+
+.dark {
+  --bg: #0f1117;
+  --bg-secondary: #1a1d27;
+  --text: #e8e6e3;
+  --text-muted: #9ca3af;
+  --accent: #60a5fa;
+  --accent-hover: #93c5fd;
+  --border: #2d3748;
+  --card-bg: #1a1d27;
+  --sidebar-bg: #0d1117;
+  --sidebar-text: #cbd5e1;
+  --sidebar-active-border: #60a5fa;
+  --sidebar-active-bg: rgba(96,165,250,0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Page transition wrapper */
+.page-transition {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Prose styles for MDX content */
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: var(--text);
+  line-height: 1.3;
+  margin-top: 1.75em;
+  margin-bottom: 0.75em;
+}
+.prose p { color: var(--text-muted); margin-bottom: 1.25em; }
+.prose a { color: var(--accent); text-decoration: underline; }
+.prose ul, .prose ol { color: var(--text-muted); padding-left: 1.5em; margin-bottom: 1.25em; }
+.prose li { margin-bottom: 0.35em; }
+.prose code {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.875em;
+}
+.prose pre {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.25em;
+}
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1em;
+  color: var(--text-muted);
+  font-style: italic;
+}
