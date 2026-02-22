@@ -141,7 +141,7 @@ export default function Contact() {
                         <h4 className="text-xs font-bold uppercase tracking-widest mb-6 opacity-40">Social Links</h4>
                         <div className="space-y-4">
                             <a href="https://linkedin.com/in/oguzcan-taskin" target="_blank" rel="noopener noreferrer" className="block text-lg font-bold hover:text-blue-400 transition-colors">LinkedIn</a>
-                            <a href="https://github.com/oguzcan" target="_blank" rel="noopener noreferrer" className="block text-lg font-bold hover:text-blue-400 transition-colors">GitHub</a>
+                            <a href="https://github.com/ot113" target="_blank" rel="noopener noreferrer" className="block text-lg font-bold hover:text-blue-400 transition-colors">GitHub</a>
                             <a href="https://ototot.itch.io" target="_blank" rel="noopener noreferrer" className="block text-lg font-bold hover:text-blue-400 transition-colors">Itch.io</a>
                         </div>
                     </div>
