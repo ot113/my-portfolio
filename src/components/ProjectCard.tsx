@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Project } from '@/types/project';
 
 interface ProjectCardProps {
@@ -16,16 +17,22 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             }}
         >
             <div
-                className="w-full h-48 sm:h-56 bg-white/5 relative overflow-hidden"
+                className="w-full h-48 sm:h-56 relative overflow-hidden"
                 style={{ backgroundColor: 'var(--bg-secondary)' }}
             >
-                {/* Thumbnail Placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center text-xs opacity-20 uppercase font-bold tracking-widest">
-                    {project.title}
-                </div>
-                {/* Next/Image would go here in production */}
+                {project.thumbnail ? (
+                    <Image
+                        src={project.thumbnail}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-xs opacity-20 uppercase font-bold tracking-widest">
+                        {project.title}
+                    </div>
+                )}
             </div>
-
             <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors uppercase tracking-tight">
                     {project.title}
