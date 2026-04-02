@@ -3,40 +3,34 @@ import AboutSubNav from '@/components/AboutSubNav';
 
 const EXPERIENCE = [
     {
-        role: "Game and Level Designer Internship",
+        role: "Co-Founder",
+        company: "Team Indie Bindie",
+        period: "Jan 2025 — Present",
+        description: "Leading an indie game team, overseeing creative direction and project development."
+    },
+    {
+        role: "Game and Level Design Intern",
         company: "Hyperlab",
-        period: "Recent",
+        period: "Oct 2025 — Jan 2026",
         description: "Contributed to the ideation process for various projects. Designed hybrid-casual puzzle game levels."
     },
     {
-        role: "Game Design Internship",
+        role: "Game Designer Intern",
         company: "UDO Games",
-        period: "2024",
+        period: "Jul 2025 — Aug 2025",
         description: "Prototyping mobile game mechanics. Researched market trends to inform design decisions. Authored the CardTower GDD."
-    },
-    {
-        role: "Game Design Internship",
-        company: "EasyClap Games",
-        period: "2023",
-        description: "Created and updated game design documents. Assisted in crafting the game world and systemic interactions."
-    },
-    {
-        role: "Narrative Designer",
-        company: "ATOM at METU TEKNOKENT",
-        period: "2023",
-        description: "Focused on character creation and narrative structure for projects in the pre-incubation center."
-    },
-    {
-        role: "Indie Director and Screenwriter",
-        company: "Self-Employed",
-        period: "2022",
-        description: "Directed independent creative projects with a focus on cinematography and lighting design."
     },
     {
         role: "Board Member of Animation",
         company: "METU GATES",
-        period: "2021 — 2023",
+        period: "Aug 2024 — Jun 2025",
         description: "Organized events to promote understanding of the animation process. Conducted interviews with industry professionals."
+    },
+    {
+        role: "Game Design Intern",
+        company: "Easy Clap Games",
+        period: "Jul 2024 — Sep 2024",
+        description: "Created and updated game design documents. Assisted in crafting the game world and systemic interactions."
     }
 ];
 
@@ -45,9 +39,7 @@ export default function Experience() {
         <div className="p-8 lg:p-20 max-w-5xl">
             <SEO title="Experience" />
             <h1 className="text-4xl lg:text-5xl font-bold mb-8 tracking-tight">Experience</h1>
-
             <AboutSubNav />
-
             <div className="space-y-12">
                 {EXPERIENCE.map((exp, i) => (
                     <div key={i} className="relative pl-8 border-l-2 border-white/10">
