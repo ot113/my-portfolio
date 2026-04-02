@@ -45,7 +45,7 @@
     "tags": ["Unity", "Game Jam", "3D", "Action", "Arcade", "Space", "Low-poly"],
     "thumbnail": "/images/projects/danceofdestruction_thumbnail.png",
     "images": [
-      "/images/projects/danceofdestructtion_thumbnail.png"
+      "/images/projects/danceofdestruction_thumbnail.png"
     ],
     "overview": "## A Dance of Destruction\n\nCreated in 48 hours for GMTK Game Jam 2024. A 3D space action game where you eat planets and meteorites to grow — but protect Earth at all costs.\n\n### Gameplay\n- **Core Loop**: Eat objects to grow, but don't exceed the size limit.\n- **White Holes**: Use them to shrink back down.\n- **Tasks**: Complete objectives while managing your size.\n\n### Team\nCollaborative jam entry with RogueLime, dibrojga, Bilaxten, RoderOne, and HonorAlp.",
     "technologies": ["Unity", "C#"],
@@ -98,10 +98,7 @@
     "year": 2024,
     "tags": ["Game Design Document", "Game Mechanics", "Mobile"],
     "thumbnail": "",
-    "images": []
-    
-      
-    ],
+    "images": [],
     "overview": "## Overview\n\nCardTower is a GDD for a mobile-first card tower defense hybrid. Players draw cards each turn to place towers, cast spells, and adapt to procedurally generated enemy waves.\n\n## Key Systems\n\n- Card draw and hand management\n- Tower placement and synergy system\n- Economy and upgrade loop\n- Procedural difficulty scaling\n\n## Design Philosophy\n\nThe goal was to create a game that rewards planning without punishing beginners. Each design decision was tested against three player archetypes: casual, mid-core, and competitive.",
     "technologies": ["Google Docs", "Figma", "Miro"],
     "links": {
