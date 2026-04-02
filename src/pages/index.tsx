@@ -30,7 +30,7 @@ export default function Home() {
             Oğuzcan Taşkın
           </h1>
           <p className="text-xl font-medium mb-6" style={{ color: 'var(--accent)' }}>
-            Game Designer, Historian
+            Game Designer
           </p>
           <p className="text-lg opacity-80 leading-relaxed mb-8">
             Game Designer with a strong interest in building mechanic-driven systems and thoughtful player experiences. I enjoy shaping gameplay from early ideas into clear, structured loops through iteration and prototyping.
