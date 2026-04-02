@@ -99,7 +99,7 @@
     "tags": ["Game Design Document", "Game Mechanics", "Mobile"],
     "thumbnail": 
     "images": [
-      "/images/projects/cardtower-1.jpg"
+      
     ],
     "overview": "## Overview\n\nCardTower is a GDD for a mobile-first card tower defense hybrid. Players draw cards each turn to place towers, cast spells, and adapt to procedurally generated enemy waves.\n\n## Key Systems\n\n- Card draw and hand management\n- Tower placement and synergy system\n- Economy and upgrade loop\n- Procedural difficulty scaling\n\n## Design Philosophy\n\nThe goal was to create a game that rewards planning without punishing beginners. Each design decision was tested against three player archetypes: casual, mid-core, and competitive.",
     "technologies": ["Google Docs", "Figma", "Miro"],
