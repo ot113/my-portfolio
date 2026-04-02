@@ -2,30 +2,94 @@
   {
     "id": "where-is-azrael",
     "title": "Where is Azrael?",
-    "description": "Personal project featuring a custom dialog system, boss fight, and environment design.",
+    "description": "Solo project featuring a custom dialog system, boss fight, and environment design in a medieval pixel-art world.",
     "role": "Game Designer, Developer",
     "year": 2024,
-    "tags": [
-      "Unity",
-      "Narrative Design",
-      "Level Design",
-      "Game Mechanics"
-    ],
+    "tags": ["Unity", "Narrative Design", "Level Design", "Game Mechanics", "Pixel Art", "2D"],
     "thumbnail": "/images/projects/araroi-thumb.jpg",
     "images": [
       "/images/projects/araroi-1.jpg",
       "/images/projects/araroi-2.jpg"
     ],
     "overview": "## Where is Azrael?\n\nA personal project exploring deep narrative systems and combat mechanics in Unity.\n\n### Implementation Details\n- **Dialog System**: Branching narrative with state-dependent responses.\n- **Boss Fight**: Systems-driven combat encounter.\n- **Environment Design**: Storytelling through spatial layout.",
-    "technologies": [
-      "Unity",
-      "C#"
-    ],
+    "technologies": ["Unity", "C#"],
     "links": {
       "github": "https://github.com/oguzcan",
-      "demo": ""
+      "demo": "https://ototot.itch.io/where-is-azrael"
     },
     "featured": true
+  },
+  {
+    "id": "carrotson",
+    "title": "CarrotSon",
+    "description": "A 3D action/shooter game made for Winter Jam 2025. Fight against the enemies of your family.",
+    "role": "Game Designer, Developer",
+    "year": 2025,
+    "tags": ["Unity", "Game Jam", "3D", "Action", "Shooter"],
+    "thumbnail": "/images/projects/carrotson-thumb.jpg",
+    "images": [
+      "/images/projects/carrotson-1.jpg"
+    ],
+    "overview": "## CarrotSon\n\nA 3D action/shooter game created for Winter Jam 2025 as a team project.\n\n### Details\n- **Genre**: Action / Shooter\n- **Team**: Collaborative jam entry with loravu and eliffbaysaall-ctrl\n- **Theme**: Family, combat, and survival",
+    "technologies": ["Unity", "C#"],
+    "links": {
+      "external": "https://ototot.itch.io/carrotson"
+    },
+    "featured": false
+  },
+  {
+    "id": "a-dance-of-destruction",
+    "title": "A Dance of Destruction",
+    "description": "A 48-hour GMTK Game Jam 2024 entry. Eat planets and meteorites in space — but don't eat Earth.",
+    "role": "Game Designer",
+    "year": 2024,
+    "tags": ["Unity", "Game Jam", "3D", "Action", "Arcade", "Space", "Low-poly"],
+    "thumbnail": "/images/projects/adod-thumb.jpg",
+    "images": [
+      "/images/projects/adod-1.jpg"
+    ],
+    "overview": "## A Dance of Destruction\n\nCreated in 48 hours for GMTK Game Jam 2024. A 3D space action game where you eat planets and meteorites to grow — but protect Earth at all costs.\n\n### Gameplay\n- **Core Loop**: Eat objects to grow, but don't exceed the size limit.\n- **White Holes**: Use them to shrink back down.\n- **Tasks**: Complete objectives while managing your size.\n\n### Team\nCollaborative jam entry with RogueLime, dibrojga, Bilaxten, RoderOne, and HonorAlp.",
+    "technologies": ["Unity", "C#"],
+    "links": {
+      "external": "https://roguelime.itch.io/a-dance-of-destruction"
+    },
+    "featured": false
+  },
+  {
+    "id": "overclocked",
+    "title": "OverClocked!",
+    "description": "A simulation game where you play as a robot worker converting raw materials into products before your battery runs out.",
+    "role": "Game Designer",
+    "year": 2023,
+    "tags": ["Unity", "Game Jam", "Simulation", "3D"],
+    "thumbnail": "/images/projects/overclocked-thumb.jpg",
+    "images": [
+      "/images/projects/overclocked-1.jpg"
+    ],
+    "overview": "## OverClocked!\n\nA jam entry for Winter is JAMing. You're a robot in a factory, converting raw materials into products as demanded by the CEO.\n\n### Gameplay\n- **Core Loop**: Process materials on the conveyor belt and deliver products.\n- **Battery System**: Completing orders recharges you; pulling levers drains charge.\n- **Organic Converter**: Handle strange materials carefully.\n\n### Team\nCollaborative entry with 3kmek, dibrojga, RoderOne, and loravu.",
+    "technologies": ["Unity", "C#"],
+    "links": {
+      "external": "https://3k-mek.itch.io/overclocked"
+    },
+    "featured": false
+  },
+  {
+    "id": "overgrown",
+    "title": "overgrown",
+    "description": "A Lovecraftian-themed management and simulation game. Grow plants in your greenhouse, sell them — before they grow out of control.",
+    "role": "Game Designer",
+    "year": 2024,
+    "tags": ["Unity", "Simulation", "3D", "Management", "Lovecraftian", "Atmospheric"],
+    "thumbnail": "/images/projects/overgrown-thumb.jpg",
+    "images": [
+      "/images/projects/overgrown-1.jpg"
+    ],
+    "overview": "## overgrown\n\nA Lovecraftian-themed management and simulation prototype. Sell the plants you grow to unlock new plant types and developments.\n\n### Core Mechanics\n- **Seed Planting**: Plant seeds from an endless store into empty pots.\n- **Irrigation**: Water plants with blood from a barrel.\n- **Harvesting**: Harvest on time or plants enter the 'overgrown' stage.\n- **Overgrown**: Each plant has a unique overgrown trait that activates if not harvested in time.\n- **Selling**: Deliver plants, earn money, pay rent, and buy upgrades.\n\n### Team\nCollaborative project with Osman Gelmez, RogueLime, and dibrojga.",
+    "technologies": ["Unity", "C#"],
+    "links": {
+      "external": "https://osmangelmez.itch.io/overgrown"
+    },
+    "featured": false
   },
   {
     "id": "cardtower-gdd",
@@ -33,51 +97,15 @@
     "description": "Comprehensive Game Design Document for a mobile card tower defense game, created during internship at UDO Games.",
     "role": "Game Designer",
     "year": 2024,
-    "tags": [
-      "Game Design Document",
-      "Game Mechanics",
-      "Mobile"
-    ],
+    "tags": ["Game Design Document", "Game Mechanics", "Mobile"],
     "thumbnail": "/images/projects/cardtower-thumb.jpg",
     "images": [
       "/images/projects/cardtower-1.jpg"
     ],
     "overview": "## Overview\n\nCardTower is a GDD for a mobile-first card tower defense hybrid. Players draw cards each turn to place towers, cast spells, and adapt to procedurally generated enemy waves.\n\n## Key Systems\n\n- Card draw and hand management\n- Tower placement and synergy system\n- Economy and upgrade loop\n- Procedural difficulty scaling\n\n## Design Philosophy\n\nThe goal was to create a game that rewards planning without punishing beginners. Each design decision was tested against three player archetypes: casual, mid-core, and competitive.",
-    "technologies": [
-      "Google Docs",
-      "Figma",
-      "Miro"
-    ],
+    "technologies": ["Google Docs", "Figma", "Miro"],
     "links": {
       "external": ""
-    },
-    "featured": false
-  },
-  {
-    "id": "gmtk-2024",
-    "title": "GMTK Game Jam 2024",
-    "description": "A 48-hour game jam entry focused on emergent mechanics and level design around the theme 'Built to Scale'.",
-    "role": "Game Designer, Level Designer",
-    "year": 2024,
-    "tags": [
-      "Game Mechanics",
-      "Level Design",
-      "Game Jam",
-      "Unity"
-    ],
-    "thumbnail": "/images/projects/gmtk-thumb.jpg",
-    "images": [
-      "/images/projects/gmtk-1.jpg",
-      "/images/projects/gmtk-2.jpg"
-    ],
-    "overview": "## Overview\n\nCreated in 48 hours for GMTK Game Jam 2024 around the theme 'Built to Scale'. The game challenges players to resize objects to solve physics-based puzzles.\n\n## Design Constraints\n\nWorking within a 48-hour window required rapid prototyping and disciplined scope management. Core mechanics were locked at hour 4, allowing the remaining time to be spent on level design and polish.\n\n## Levels\n\nFive levels were designed, each introducing a new interaction between the scale mechanic and environmental hazards.",
-    "technologies": [
-      "Unity",
-      "C#",
-      "Aseprite"
-    ],
-    "links": {
-      "external": "https://itch.io"
     },
     "featured": false
   }
