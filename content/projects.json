@@ -15,8 +15,7 @@
     "overview": "## Where is Azrael?\n\nA personal project exploring deep narrative systems and combat mechanics in Unity.\n\n### Implementation Details\n- **Dialog System**: Branching narrative with state-dependent responses.\n- **Boss Fight**: Systems-driven combat encounter.\n- **Environment Design**: Storytelling through spatial layout.",
     "technologies": ["Unity", "C#"],
     "links": {
-      "github": "https://github.com/oguzcan",
-      "demo": "https://ototot.itch.io/where-is-azrael"
+      "external": "https://ototot.itch.io/where-is-azrael"
     },
     "featured": true
   },
