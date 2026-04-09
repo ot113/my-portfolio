@@ -51,8 +51,8 @@ export default function Sidebar() {
 
                 {/* CV Download */}
                 <a
-                    href="/cv/oguzcan-taskin-cv.pdf"
-                    download="Oguzcan-Taskin-CV.pdf"
+                    href="/cv/OguzcanTaskin_CV.pdf"
+                    download="OguzcanTaskin_CV.pdf"
                     className="mt-6 block text-center text-sm font-semibold py-2.5 px-4 rounded transition-all duration-200 hover:opacity-90"
                     style={{ backgroundColor: 'var(--accent)', color: '#fff' }}
                 >
