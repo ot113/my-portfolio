@@ -36,9 +36,20 @@ export default function BlogIndex({ posts }: BlogIndexProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
     const posts = getAllPosts();
+
+    const pvzPost: PostMeta = {
+        slug: "pvz-deconstruction",
+        title: "How PvZ teaches without telling",
+        date: "2025-05-16",
+        excerpt: "A teardown of PopCap's 2009 lawn defense, organized around four design pillars.",
+        thumbnail: "",
+        readingTime: 10,
+        published: true,
+    };
+
     return {
         props: {
-            posts,
+            posts: [pvzPost, ...posts],
         },
     };
 };
