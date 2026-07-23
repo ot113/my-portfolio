@@ -15,14 +15,18 @@ export default function SEO({ title, description, image, url }: SEOProps) {
     const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — Game Designer & Historian`;
     const metaDescription = description ?? DEFAULT_DESCRIPTION;
     const metaImage = image ?? DEFAULT_IMAGE;
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://oguzcan.dev';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://oguzcantaskin.com.tr';
     const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
+    const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
     return (
         <Head>
             <title>{fullTitle}</title>
             <meta name="description" content={metaDescription} />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            {googleSiteVerification && (
+                <meta name="google-site-verification" content={googleSiteVerification} />
+            )}
 
             {/* OG */}
             <meta property="og:type" content="website" />
