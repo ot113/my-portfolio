@@ -1,5 +1,6 @@
 import { useTheme } from '../hooks/useTheme';
 
+// Small fixed square in the bottom-right corner, out of the way of the nav
 export default function ThemeToggle() {
     const { theme, toggle } = useTheme();
     const next = theme === 'dark' ? 'light' : 'dark';
@@ -9,11 +10,12 @@ export default function ThemeToggle() {
             type="button"
             onClick={toggle}
             aria-label={`Switch to ${next} mode`}
-            className="label"
-            // theme is unknown during SSR; keep the slot so the nav does not shift
-            style={{ visibility: theme ? 'visible' : 'hidden', background: 'none', border: '1px solid var(--border)', color: 'var(--text)', padding: '5px 10px', minWidth: 64 }}
+            title={`Switch to ${next} mode`}
+            className="theme-toggle"
+            // theme is unknown during SSR; show it once it is read
+            style={{ visibility: theme ? 'visible' : 'hidden' }}
         >
-            {next === 'dark' ? '◐ Dark' : '◑ Light'}
+            <span aria-hidden="true">{next === 'dark' ? '◐' : '◑'}</span>
         </button>
     );
 }
