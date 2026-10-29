@@ -1,36 +1,16 @@
 @import "tailwindcss";
 
-/* Dark mode via .dark class on <html> */
-@variant dark (&:where(.dark, .dark *));
-
 :root {
-  --bg: #f8f7f4;
-  --bg-secondary: #f0ede8;
-  --text: #1a1a1a;
-  --text-muted: #6b7280;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --border: #e5e7eb;
-  --card-bg: #ffffff;
-  --sidebar-bg: #1e293b;
-  --sidebar-text: #e2e8f0;
-  --sidebar-active-border: #3b82f6;
-  --sidebar-active-bg: rgba(59,130,246,0.12);
-}
+  --bg: #F2F1EC;
+  --text: #111111;
+  --text-secondary: #5F5E58;
+  --accent: #E4572E;
+  --border: #111111;
 
-.dark {
-  --bg: #0f1117;
-  --bg-secondary: #1a1d27;
-  --text: #e8e6e3;
-  --text-muted: #9ca3af;
-  --accent: #60a5fa;
-  --accent-hover: #93c5fd;
-  --border: #2d3748;
-  --card-bg: #1a1d27;
-  --sidebar-bg: #0d1117;
-  --sidebar-text: #cbd5e1;
-  --sidebar-active-border: #60a5fa;
-  --sidebar-active-bg: rgba(96,165,250,0.12);
+  --bg-inverse: #111111;
+  --text-inverse: #F2F1EC;
+  --text-inverse-secondary: #A9A79F;
+  --border-inverse: #F2F1EC;
 }
 
 *,
@@ -39,17 +19,50 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 body {
+  margin: 0;
   background-color: var(--bg);
   color: var(--text);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Font variables are set on this wrapper in _app, so the body face is applied here */
+.app-root {
+  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Condensed uppercase headings: Turkish capitals (Ğ İ Ş) need room above */
+.h-display {
+  font-family: var(--font-archivo), "Arial Narrow", Arial, sans-serif;
+  font-stretch: 62%;
+  font-weight: 800;
+  line-height: 1.02;
+  padding-top: 0.08em;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.label {
+  font-family: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  font-stretch: 112%;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 /* Page transition wrapper */
@@ -62,6 +75,28 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Scroll-driven highlight on list items */
+.hl-item {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hero "Now playing" title swaps with each cut of the reel */
+.now-swap {
+  animation: fadeIn 0.3s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now-swap {
+    animation: none;
+  }
+  .page-transition {
+    animation: none;
+  }
+  .hl-item {
+    transition: none;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -70,15 +105,14 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 3px;
+  background: var(--text-secondary);
+  border-radius: 0;
 }
 
 /* Focus visible */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
 /* Prose styles for MDX content */
@@ -88,19 +122,21 @@ body {
   margin-top: 1.75em;
   margin-bottom: 0.75em;
 }
-.prose p { color: var(--text-muted); margin-bottom: 1.25em; }
+.prose p { color: var(--text-secondary); margin-bottom: 1.25em; }
 .prose a { color: var(--accent); text-decoration: underline; }
-.prose ul, .prose ol { color: var(--text-muted); padding-left: 1.5em; margin-bottom: 1.25em; }
+.prose ul, .prose ol { color: var(--text-secondary); padding-left: 1.5em; margin-bottom: 1.25em; }
 .prose li { margin-bottom: 0.35em; }
 .prose code {
-  background: var(--bg-secondary);
-  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 0;
   padding: 0.15em 0.4em;
   font-size: 0.875em;
 }
 .prose pre {
-  background: var(--bg-secondary);
-  border-radius: 8px;
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  border-radius: 0;
   padding: 1rem;
   overflow-x: auto;
   margin-bottom: 1.25em;
@@ -108,6 +144,20 @@ body {
 .prose blockquote {
   border-left: 3px solid var(--accent);
   padding-left: 1em;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-style: italic;
+}
+
+/* PvZ teardown: four and five column blocks step down to two before going single column */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .pvz-cols { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 760px) {
+  .pvz-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pvz-rationale { border-left: 0 !important; border-top: 1px solid var(--border); }
+  .hide-sm { display: none !important; }
+  .stack-sm { flex-direction: column !important; align-items: flex-start !important; }
+  .grid-sm { grid-template-columns: minmax(0, 1fr) !important; }
+  .row-sm { grid-template-columns: 48px minmax(0, 1fr) !important; }
 }

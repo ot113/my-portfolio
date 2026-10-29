@@ -1,66 +1,110 @@
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 import SEO from '@/components/SEO';
+import HeroReel, { ReelClip } from '@/components/HeroReel';
+import LevelSelect from '@/components/LevelSelect';
+import Reveal from '@/components/Reveal';
+import { getAllProjects } from '@/lib/projects';
+import { getAllPostsWithPvz } from '@/lib/posts';
+import { Project } from '@/types/project';
+import { PostMeta } from '@/types/post';
 
-const QUICK_LINKS = [
-  { href: '/about', title: 'About', description: 'Learn more about my background' },
-  { href: '/projects', title: 'Projects', description: 'Explore my game design work' },
-  { href: '/blog', title: 'Blog', description: 'Read my thoughts and insights' },
-  { href: '/contact', title: 'Contact', description: 'Get in touch with me' },
+const HERO_VIDEO = '/videos/portfolio-reel.mp4';
+const HERO_POSTER = '/videos/portfolio-reel-poster.jpg';
+
+// Cut points of portfolio-reel.mp4 (seconds, mid-fade), so "Now playing" names the game on screen
+const REEL_CUTS = [
+    { at: 0, id: 'outage' },
+    { at: 4.25, id: 'where-is-azrael' },
+    { at: 8.25, id: 'punnet' },
+    { at: 12.25, id: 'analoglu-architecture' },
 ];
 
-export default function Home() {
-  return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
-      <SEO />
-
-      {/* Left Panel: Profile Info (40%) */}
-      <div
-        className="w-full lg:w-[40%] flex flex-col justify-center px-10 py-20 lg:py-0 border-b lg:border-b-0 lg:border-r border-white/10"
-        style={{ backgroundColor: 'var(--bg-secondary)' }}
-      >
-        <div className="max-w-md mx-auto lg:mx-0">
-          <div className="relative w-32 h-32 rounded-full mb-8 overflow-hidden border-2 border-white/10 shadow-xl">
-            <img
-              src="/profile.jpg"
-              alt="Oğuzcan Taşkın"
-              className="object-cover w-full h-full"
-            />
-          </div>
-          <h1 className="text-4xl lg:text-5xl font-bold mb-3 tracking-tight">
-            Oğuzcan Taşkın
-          </h1>
-          <p className="text-xl font-medium mb-6" style={{ color: 'var(--accent)' }}>
-            Game Designer
-          </p>
-          <p className="text-lg opacity-80 leading-relaxed mb-8">
-            Game Designer with a strong interest in building mechanic-driven systems and thoughtful player experiences. I enjoy shaping gameplay from early ideas into clear, structured loops through iteration and prototyping.
-          </p>
-        </div>
-      </div>
-
-      {/* Right Panel: Quick Links (60%) */}
-      <div className="w-full lg:w-[60%] flex flex-col justify-center p-8 lg:p-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto w-full">
-          {QUICK_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group block p-10 border transition-all duration-300 hover:scale-[1.02]"
-              style={{
-                backgroundColor: 'var(--card-bg)',
-                borderColor: 'var(--border)'
-              }}
-            >
-              <h2 className="text-2xl font-bold mb-2 group-hover:text-blue-500 transition-colors">
-                {link.title}
-              </h2>
-              <p className="opacity-70 text-sm">
-                {link.description}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+interface HomeProps {
+    projects: Project[];
+    reel: ReelClip[];
+    note: PostMeta;
 }
+
+function ProfileCol({ label, items }: { label: string; items: string[] }) {
+    return (
+        <div style={{ borderTop: '1px solid var(--text)', paddingTop: 12 }}>
+            <span className="label" style={{ fontSize: 12, color: 'var(--text-secondary)' }}>/ {label}</span>
+            <ul style={{ listStyle: 'none', margin: '10px 0 0', padding: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                {items.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+        </div>
+    );
+}
+
+export default function Home({ projects, reel, note }: HomeProps) {
+    const noteDate = new Date(note.date).toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('.').join(' / ');
+
+    return (
+        <div>
+            <SEO />
+
+            <HeroReel reel={reel} video={HERO_VIDEO} poster={HERO_POSTER} />
+
+            <LevelSelect projects={projects} />
+
+            <section id="about" aria-labelledby="ab">
+                <div className="grid-sm" style={{ maxWidth: 1360, margin: '0 auto', padding: '32px 24px 72px', display: 'grid', gridTemplateColumns: 'repeat(12, minmax(0, 1fr))', gap: 24 }}>
+                    <Reveal style={{ gridColumn: 'span 5' }}>
+                        <span className="label">/ About</span>
+                        <h2 id="ab" className="h-display" style={{ margin: '12px 0 0', fontSize: 'clamp(40px, 6vw, 80px)' }}>
+                            Make it<br />readable.
+                        </h2>
+                    </Reveal>
+                    <Reveal delay={0.1} style={{ gridColumn: '7 / span 6', display: 'flex', flexDirection: 'column', gap: 32 }}>
+                        <p style={{ margin: 0, fontSize: 20, lineHeight: 1.45 }}>
+                            I design levels that teach without telling. One idea at a time, a space that lets the player figure it out alone, and a difficulty you can feel climbing.
+                        </p>
+                        <div className="grid-sm" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 24, fontSize: 15 }}>
+                            <ProfileCol label="Focus" items={['Level design', 'Narrative design', 'Mechanic design', 'Worldbuilding']} />
+                            <ProfileCol label="Tools" items={['Unity', 'Unreal Engine', 'Blender']} />
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
+
+            <section id="blog" aria-labelledby="bl" style={{ borderTop: '1px solid var(--border)' }}>
+                <div style={{ maxWidth: 1360, margin: '0 auto', padding: '32px 24px 72px' }}>
+                    <Reveal className="stack-sm" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, marginBottom: 24 }}>
+                        <h2 id="bl" className="h-display" style={{ margin: 0, fontSize: 'clamp(40px, 6vw, 80px)' }}>Blog</h2>
+                        <Link href="/blog" className="label" style={{ borderBottom: '1px solid var(--text)' }}>All posts →</Link>
+                    </Reveal>
+                    <Reveal delay={0.1}>
+                        <Link
+                            href={`/blog/${note.slug}`}
+                            className="stack-sm"
+                            style={{ display: 'flex', justifyContent: 'space-between', gap: 24, padding: '24px 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', alignItems: 'baseline' }}
+                        >
+                            <span className="label" style={{ whiteSpace: 'nowrap' }}>/ Latest <span style={{ color: 'var(--text-secondary)' }}>{noteDate}</span></span>
+                            <span style={{ flex: 1, fontSize: 'clamp(22px, 2.6vw, 34px)', fontWeight: 500, lineHeight: 1.15 }}>{note.title}</span>
+                            <span className="label" style={{ whiteSpace: 'nowrap' }}>{note.readingTime} min →</span>
+                        </Link>
+                    </Reveal>
+                </div>
+            </section>
+        </div>
+    );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+    // Home projects run newest first; sort is stable, so same-year projects keep their listed order.
+    // The CardTower GDD stays on the Work page only.
+    const projects = getAllProjects()
+        .filter((p) => p.id !== 'cardtower-gdd')
+        .sort((a, b) => b.year - a.year);
+    const all = getAllProjects();
+    const reel: ReelClip[] = REEL_CUTS.flatMap(({ at, id }) => {
+        const p = all.find((x) => x.id === id);
+        return p ? [{ at, id: p.id, title: p.title, type: p.type }] : [];
+    });
+    const [note] = getAllPostsWithPvz();
+
+    return {
+        props: { projects, reel, note },
+    };
+};

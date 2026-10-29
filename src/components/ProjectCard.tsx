@@ -1,50 +1,35 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 import { Project } from '@/types/project';
+import MediaPreview from './MediaPreview';
 
 interface ProjectCardProps {
     project: Project;
+    highlighted?: boolean;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
-    const [imgError, setImgError] = useState(false);
+export default function ProjectCard({ project, highlighted = false }: ProjectCardProps) {
+    const [hovered, setHovered] = useState(false);
+    const on = hovered || highlighted;
 
     return (
         <Link
             href={`/projects/${project.id}`}
-            className="group block border transition-all duration-300 hover:scale-[1.02] overflow-hidden"
-            style={{
-                backgroundColor: 'var(--card-bg)',
-                borderColor: 'var(--border)'
-            }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onFocus={() => setHovered(true)}
+            onBlur={() => setHovered(false)}
+            style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
         >
-            <div
-                className="w-full h-48 sm:h-56 relative overflow-hidden"
-                style={{ backgroundColor: 'var(--bg-secondary)' }}
-            >
-                {project.thumbnail && !imgError ? (
-                    <Image
-                        src={project.thumbnail}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        onError={() => setImgError(true)}
-                    />
-                ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-xs opacity-20 uppercase font-bold tracking-widest">
-                        {project.title}
-                    </div>
-                )}
+            <MediaPreview title={project.title} thumbnail={project.thumbnail} video={project.video} active={on} aspect="16 / 10" />
+            <div className="label" style={{ display: 'flex', justifyContent: 'space-between', gap: 8, fontSize: 12 }}>
+                <span>{on ? '▶ ' : ''}{project.type}</span>
+                <span style={{ color: 'var(--text-secondary)' }}>{project.year}</span>
             </div>
-            <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors uppercase tracking-tight">
-                    {project.title}
-                </h3>
-                <p className="text-sm opacity-70 leading-relaxed line-clamp-2">
-                    {project.description}
-                </p>
-            </div>
+            <h2 className="h-display hl-item" style={{ margin: 0, fontSize: 36, lineHeight: 1.02, color: on ? 'var(--accent)' : 'var(--text)' }}>
+                {project.title}
+            </h2>
+            <p style={{ margin: 0, fontSize: 15, color: 'var(--text-secondary)' }}>{project.description}</p>
         </Link>
     );
 }

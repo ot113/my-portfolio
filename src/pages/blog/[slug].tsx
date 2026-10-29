@@ -1,9 +1,10 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import SEO from '@/components/SEO';
 import Link from 'next/link';
+import Reveal from '@/components/Reveal';
 import { getPostBySlug, getAllPosts } from '@/lib/posts';
 import { PostMeta } from '@/types/post';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
 interface BlogPostProps {
@@ -11,7 +12,7 @@ interface BlogPostProps {
         meta: PostMeta;
         content: string;
     };
-    mdxSource: any;
+    mdxSource: MDXRemoteSerializeResult;
 }
 
 export default function BlogPost({ post, mdxSource }: BlogPostProps) {
@@ -22,60 +23,37 @@ export default function BlogPost({ post, mdxSource }: BlogPostProps) {
     });
 
     return (
-        <div className="p-8 lg:p-20 max-w-4xl mx-auto">
-            <SEO
-                title={post.meta.title}
-                description={post.meta.excerpt}
-                image={post.meta.thumbnail}
-            />
+        <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 24px 96px' }}>
+            <SEO title={post.meta.title} description={post.meta.excerpt} image={post.meta.thumbnail} />
 
-            <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 mb-12 text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
-            >
-                <span>←</span> Back to Blog
+            <Link href="/blog" className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 48 }}>
+                <span>←</span> Blog
             </Link>
 
-            <article className="mb-20">
-                <header className="mb-12">
-                    <div className="flex items-center gap-3 mb-6">
-                        <span className="text-xs font-bold uppercase tracking-widest opacity-40">
-                            {formattedDate}
-                        </span>
-                        <span className="w-1 h-1 rounded-full bg-white/20" />
-                        <span className="text-xs font-bold uppercase tracking-widest opacity-40">
-                            {post.meta.readingTime} min read
-                        </span>
-                        <span className="w-1 h-1 rounded-full bg-white/20" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-blue-500">
-                            By Oğuzcan Taşkın
-                        </span>
+            <article>
+                <Reveal as="header" style={{ marginBottom: 48 }}>
+                    <div className="label" style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap', color: 'var(--text-secondary)', marginBottom: 16 }}>
+                        <span>{formattedDate}</span>
+                        <span>{post.meta.readingTime} min read</span>
+                        <span style={{ color: 'var(--text)' }}>Oğuzcan Taşkın</span>
                     </div>
 
-                    <h1 className="text-4xl lg:text-6xl font-bold tracking-tight leading-tight mb-8">
+                    <h1 className="h-display" style={{ margin: '0 0 24px', fontSize: 'clamp(40px, 7vw, 72px)' }}>
                         {post.meta.title}
                     </h1>
+                </Reveal>
 
-                    {post.meta.thumbnail && (
-                        <div
-                            className="aspect-video bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden"
-                            style={{ backgroundColor: 'var(--bg-secondary)' }}
-                        >
-                            <div className="text-xs opacity-20 uppercase font-bold tracking-widest">Featured Image Placeholder</div>
-                        </div>
-                    )}
-                </header>
-
-                <div className="prose dark:prose-invert prose-lg max-w-none">
+                <Reveal delay={0.1} className="prose">
                     <MDXRemote {...mdxSource} />
-                </div>
+                </Reveal>
             </article>
 
-            <footer className="pt-12 border-t border-white/10 text-center">
-                <p className="text-sm opacity-40 mb-8 uppercase font-bold tracking-widest">Thanks for reading!</p>
+            <footer style={{ paddingTop: 48, borderTop: '1px solid var(--border)', textAlign: 'center' }}>
+                <p className="label" style={{ marginBottom: 24, color: 'var(--text-secondary)' }}>Thanks for reading!</p>
                 <Link
                     href="/blog"
-                    className="inline-block px-8 py-3 bg-white/5 border border-white/10 font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
+                    className="label"
+                    style={{ display: 'inline-block', padding: '12px 24px', border: '1px solid var(--text)' }}
                 >
                     View all posts
                 </Link>

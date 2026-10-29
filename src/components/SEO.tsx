@@ -8,11 +8,11 @@ interface SEOProps {
 }
 
 const SITE_NAME = "Oğuzcan Taşkın";
-const DEFAULT_DESCRIPTION = "Game Designer & Historian. Crafting player-driven experiences and thoughtful game systems.";
+const DEFAULT_DESCRIPTION = "Level Designer. Crafting player-driven experiences and thoughtful game systems.";
 const DEFAULT_IMAGE = "/images/og-image.jpg";
 
 export default function SEO({ title, description, image, url }: SEOProps) {
-    const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — Game Designer & Historian`;
+    const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} / Level Designer`;
     const metaDescription = description ?? DEFAULT_DESCRIPTION;
     const metaImage = image ?? DEFAULT_IMAGE;
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://oguzcantaskin.com.tr';
@@ -43,7 +43,9 @@ export default function SEO({ title, description, image, url }: SEOProps) {
             <meta name="twitter:image" content={`${siteUrl}${metaImage}`} />
 
             <link rel="canonical" href={fullUrl} />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/favicon.ico" sizes="48x48" />
+            <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
+            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         </Head>
     );
 }

@@ -10,8 +10,21 @@ export function getProjectById(id: string): Project | undefined {
 }
 
 export function getAllTags(): string[] {
-    const projects = getAllProjects();
     const tagSet = new Set<string>();
-    projects.forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
+    getAllProjects().forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
     return Array.from(tagSet).sort();
+}
+
+export function getFeaturedProject(): Project {
+    const projects = getAllProjects();
+    return projects.find((p) => p.featured) ?? projects[0];
+}
+
+export function getLevelTotal(): string {
+    return String(getAllProjects().length).padStart(2, '0');
+}
+
+export function getLevelNumber(id: string): string {
+    const index = getAllProjects().findIndex((p) => p.id === id);
+    return String(index + 1).padStart(2, '0');
 }

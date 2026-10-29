@@ -1,22 +1,102 @@
 [
   {
+    "id": "outage",
+    "title": "OUTAGE",
+    "description": "PSX psychological horror for Steam, Team Indie Bindie.",
+    "role": "Lead design",
+    "year": 2026,
+    "tags": ["Unity", "Horror", "PSX", "3D"],
+    "category": "Commercial",
+    "type": "Horror / PC",
+    "platform": "PC",
+    "thumbnail": "/images/projects/outage/outage-steam-capsule.jpg",
+    "images": [
+      "/images/projects/outage/outage-1.jpg",
+      "/images/projects/outage/outage-2.jpg",
+      "/images/projects/outage/outage-3.jpg",
+      "/images/projects/outage/outage-4.jpg",
+      "/images/projects/outage/outage-5.jpg",
+      "/images/projects/outage/outage-6.jpg",
+      "/images/projects/outage/outage-7.jpg"
+    ],
+    "video": "/videos/outage-reel.mp4",
+    "overview": "## OUTAGE\n\nA story-driven psychological horror game in a retro PSX and VHS style, made with Team Indie Bindie. Noah ran from his past and his sins, but they had other plans for him. The first part is playable on itch.io, and the full game is coming to Steam.",
+    "technologies": ["Unity", "C#"],
+    "links": {
+      "demo": "https://team-indie-bindie.itch.io/outage",
+      "external": "https://store.steampowered.com/app/4093950/Outage/"
+    },
+    "featured": true
+  },
+  {
+    "id": "punnet",
+    "title": "Punnet",
+    "description": "Match-3 roguelike with run-shaping modifiers.",
+    "role": "Lead design",
+    "year": 2026,
+    "tags": ["Unity", "Roguelike", "Match-3"],
+    "category": "Commercial",
+    "type": "Roguelike / Match-3",
+    "platform": "PC",
+    "thumbnail": "/images/projects/punnet/punnet-cover.jpg",
+    "images": [
+      "/images/projects/punnet/punnet-cover.jpg"
+    ],
+    "video": "",
+    "overview": "## Punnet\n\nA match-3 roguelike where every run is shaped by the modifiers you pick up along the way.",
+    "technologies": ["Unity", "C#"],
+    "links": {},
+    "featured": false
+  },
+  {
+    "id": "analoglu-architecture",
+    "title": "Analoglu Architecture",
+    "description": "A PSX horror simulation made for TEDU Jam 2026. You are a building inspector: approve or reject proposals by the rule book. Doing everything right does not mean everything will be fine.",
+    "role": "Game Designer",
+    "year": 2026,
+    "tags": ["Godot", "Game Jam", "Simulation", "Horror", "PSX", "Atmospheric"],
+    "category": "Jam",
+    "type": "Horror / Simulation",
+    "platform": "Web",
+    "thumbnail": "/images/projects/analoglu/analoglu-cover.jpg",
+    "images": [
+      "/images/projects/analoglu/analoglu-cover.jpg",
+      "/images/projects/analoglu/shot-1.jpg",
+      "/images/projects/analoglu/shot-2.jpg",
+      "/images/projects/analoglu/shot-3.jpg",
+      "/images/projects/analoglu/shot-4.jpg",
+      "/images/projects/analoglu/shot-5.jpg"
+    ],
+    "overview": "## Analoglu Architecture\n\nA PSX horror simulation made for TEDU Jam 2026. You play a building inspector at a cramped desk, reading proposals and stamping them approved or rejected according to the rule book. Doing everything right does not mean everything will be fine.\n\n### Core Mechanics\n- **Inspection**: Click a document to read it up close, right click to zoom into the details.\n- **The rule book**: Every decision is checked against the rules on your desk.\n- **Stamping**: Equip the stamp, then approve or reject each proposal.\n- **Desk view**: Click the map to switch to a top-down view of the whole desk.\n\n### Team\nMade with RoderOne, Kelebek and MagpieWing in Godot.",
+    "technologies": ["Godot"],
+    "links": {
+      "external": "https://ototot.itch.io/analoglu-architecture"
+    },
+    "featured": false
+  },
+  {
     "id": "where-is-azrael",
     "title": "Where is Azrael?",
     "description": "Solo project featuring a custom dialog system, boss fight, and environment design in a medieval pixel-art world.",
     "role": "Game Designer, Developer",
     "year": 2024,
     "tags": ["Unity", "Narrative Design", "Level Design", "Game Mechanics", "Pixel Art", "2D"],
+    "category": "Solo",
+    "type": "Pixel art / Action",
+    "platform": "PC",
     "thumbnail": "/images/projects/whereisazrail_thumbnail.png",
     "images": [
-      "/images/projects/whereisazrail_thumbnail.png"
+      "/images/projects/whereisazrail_thumbnail.png",
+      "/images/projects/where-is-azrael/shot-1.jpg",
+      "/images/projects/where-is-azrael/shot-2.jpg",
+      "/images/projects/where-is-azrael/shot-3.jpg"
     ],
     "overview": "## Where is Azrael?\n\nA personal project exploring deep narrative systems and combat mechanics in Unity.\n\n### Implementation Details\n- **Dialog System**: Branching narrative with state-dependent responses.\n- **Boss Fight**: Systems-driven combat encounter.\n- **Environment Design**: Storytelling through spatial layout.",
     "technologies": ["Unity", "C#"],
     "links": {
-      
       "demo": "https://ototot.itch.io/where-is-azrael"
     },
-    "featured": true
+    "featured": false
   },
   {
     "id": "carrotson",
@@ -25,6 +105,9 @@
     "role": "Game Designer, Developer",
     "year": 2025,
     "tags": ["Unity", "Game Jam", "3D", "Action", "Shooter"],
+    "category": "Jam",
+    "type": "3D shooter",
+    "platform": "PC",
     "thumbnail": "/images/projects/carrotson_thumbnail.png",
     "images": [
       "/images/projects/carrotson_thumbnail.png"
@@ -39,15 +122,19 @@
   {
     "id": "a-dance-of-destruction",
     "title": "A Dance of Destruction",
-    "description": "A 48-hour GMTK Game Jam 2024 entry. Eat planets and meteorites in space — but don't eat Earth.",
+    "description": "A 48-hour GMTK Game Jam 2024 entry. Eat planets and meteorites in space, but don't eat Earth.",
     "role": "Game Designer",
     "year": 2024,
     "tags": ["Unity", "Game Jam", "3D", "Action", "Arcade", "Space", "Low-poly"],
+    "category": "Jam",
+    "type": "Arcade",
+    "platform": "PC",
     "thumbnail": "/images/projects/danceofdestruction_thumbnail.png",
     "images": [
-      "/images/projects/danceofdestruction_thumbnail.png"
+      "/images/projects/danceofdestruction_thumbnail.png",
+      "/images/projects/a-dance-of-destruction/shot-1.png"
     ],
-    "overview": "## A Dance of Destruction\n\nCreated in 48 hours for GMTK Game Jam 2024. A 3D space action game where you eat planets and meteorites to grow — but protect Earth at all costs.\n\n### Gameplay\n- **Core Loop**: Eat objects to grow, but don't exceed the size limit.\n- **White Holes**: Use them to shrink back down.\n- **Tasks**: Complete objectives while managing your size.\n\n### Team\nCollaborative jam entry with RogueLime, dibrojga, Bilaxten, RoderOne, and HonorAlp.",
+    "overview": "## A Dance of Destruction\n\nCreated in 48 hours for GMTK Game Jam 2024. A 3D space action game where you eat planets and meteorites to grow, but protect Earth at all costs.\n\n### Gameplay\n- **Core Loop**: Eat objects to grow, but don't exceed the size limit.\n- **White Holes**: Use them to shrink back down.\n- **Tasks**: Complete objectives while managing your size.\n\n### Team\nCollaborative jam entry with RogueLime, dibrojga, Bilaxten, RoderOne, and HonorAlp.",
     "technologies": ["Unity", "C#"],
     "links": {
       "external": "https://roguelime.itch.io/a-dance-of-destruction"
@@ -61,6 +148,9 @@
     "role": "Game Designer",
     "year": 2023,
     "tags": ["Unity", "Game Jam", "Simulation", "3D"],
+    "category": "Jam",
+    "type": "Simulation",
+    "platform": "PC",
     "thumbnail": "/images/projects/overclocked_thumbnail.png",
     "images": [
       "/images/projects/overclocked_thumbnail.png"
@@ -75,13 +165,20 @@
   {
     "id": "overgrown",
     "title": "overgrown",
-    "description": "A Lovecraftian-themed management and simulation game. Grow plants in your greenhouse, sell them — before they grow out of control.",
+    "description": "A Lovecraftian-themed management and simulation game. Grow plants in your greenhouse and sell them before they grow out of control.",
     "role": "Game Designer",
     "year": 2024,
     "tags": ["Unity", "Simulation", "3D", "Management", "Lovecraftian", "Atmospheric"],
+    "category": "Jam",
+    "type": "Management",
+    "platform": "PC",
     "thumbnail": "/images/projects/overgrown_thumbnail.png",
     "images": [
-      "/images/projects/overgrown_thumbnail.png"
+      "/images/projects/overgrown_thumbnail.png",
+      "/images/projects/overgrown/shot-1.png",
+      "/images/projects/overgrown/shot-2.png",
+      "/images/projects/overgrown/shot-3.png",
+      "/images/projects/overgrown/shot-4.png"
     ],
     "overview": "## overgrown\n\nA Lovecraftian-themed management and simulation prototype. Sell the plants you grow to unlock new plant types and developments.\n\n### Core Mechanics\n- **Seed Planting**: Plant seeds from an endless store into empty pots.\n- **Irrigation**: Water plants with blood from a barrel.\n- **Harvesting**: Harvest on time or plants enter the 'overgrown' stage.\n- **Overgrown**: Each plant has a unique overgrown trait that activates if not harvested in time.\n- **Selling**: Deliver plants, earn money, pay rent, and buy upgrades.\n\n### Team\nCollaborative project with Osman Gelmez, RogueLime, and dibrojga.",
     "technologies": ["Unity", "C#"],
@@ -97,6 +194,9 @@
     "role": "Game Designer",
     "year": 2024,
     "tags": ["Game Design Document", "Game Mechanics", "Mobile"],
+    "category": "Docs",
+    "type": "Mobile / Tower defense",
+    "platform": "Mobile",
     "thumbnail": "",
     "images": [],
     "overview": "## Overview\n\nCardTower is a GDD for a mobile-first card tower defense hybrid. Players draw cards each turn to place towers, cast spells, and adapt to procedurally generated enemy waves.\n\n## Key Systems\n\n- Card draw and hand management\n- Tower placement and synergy system\n- Economy and upgrade loop\n- Procedural difficulty scaling\n\n## Design Philosophy\n\nThe goal was to create a game that rewards planning without punishing beginners. Each design decision was tested against three player archetypes: casual, mid-core, and competitive.",

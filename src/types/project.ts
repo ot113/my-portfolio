@@ -5,9 +5,13 @@ export interface Project {
   description: string;           // Short — used on listing card
   role: string;                  // e.g. "Game Designer, Developer"
   year: number;
-  tags: string[];                // Used for filtering — exact string match
+  tags: string[];                // Freeform tags, shown as technology chips
+  category: "Commercial" | "Solo" | "Jam" | "Docs"; // Work page filter group
+  type: string;                  // Genre descriptor for meta row, e.g. "Horror / PC"
+  platform: string;              // e.g. "PC", "Mobile"
   thumbnail: string;             // Path relative to /public, e.g. "/images/projects/araroi-thumb.jpg"
   images: string[];              // Gallery images — same path convention
+  video?: string;                // Optional muted hover-preview clip, path relative to /public
   overview: string;              // Long-form markdown string
   technologies: string[];        // Displayed as tech tags on detail page
   links: {
@@ -15,5 +19,5 @@ export interface Project {
     demo?: string;
     external?: string;
   };
-  featured: boolean;             // Reserved for future homepage highlight — not used at launch
+  featured: boolean;             // Drives the homepage hero highlight
 }

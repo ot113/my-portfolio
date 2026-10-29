@@ -1,125 +1,156 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
-import SEO from '@/components/SEO';
 import Link from 'next/link';
-import { getProjectById, getAllProjects } from '@/lib/projects';
+import Image from 'next/image';
+import SEO from '@/components/SEO';
+import MediaPreview from '@/components/MediaPreview';
+import Reveal from '@/components/Reveal';
+import { getAllProjects, getLevelNumber, getLevelTotal } from '@/lib/projects';
 import { Project } from '@/types/project';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
 interface ProjectDetailProps {
     project: Project;
-    mdxSource: any;
+    mdxSource: MDXRemoteSerializeResult;
+    nextProject: Project | null;
 }
 
-export default function ProjectDetail({ project, mdxSource }: ProjectDetailProps) {
+/* Name store links after the store, so OUTAGE reads "itch.io" and "Steam" instead of two generic labels */
+function linkLabel(url: string, fallback: string) {
+    if (url.includes('store.steampowered.com')) return 'Steam';
+    if (url.includes('itch.io')) return 'itch.io';
+    return fallback;
+}
+
+export default function ProjectDetail({ project, mdxSource, nextProject }: ProjectDetailProps) {
+    const levelNum = getLevelNumber(project.id);
+
+    const hasLinks = project.links.github || project.links.demo || project.links.external;
+
     return (
-        <div className="p-8 lg:p-20 max-w-5xl mx-auto">
+        <div style={{ maxWidth: 1360, margin: '0 auto', padding: '48px 24px 96px' }}>
             <SEO title={project.title} description={project.description} />
 
-            <Link
-                href="/projects"
-                className="inline-flex items-center gap-2 mb-12 text-sm font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
-            >
-                <span>←</span> Back to Projects
+            <Link href="/projects" className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 48 }}>
+                <span>←</span> Work
             </Link>
 
-            <div className="mb-16">
-                <div className="flex flex-wrap gap-4 mb-6">
-                    <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 bg-blue-600/10 text-blue-500 border border-blue-500/20 rounded-full">
-                        {project.year}
-                    </span>
-                    <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 bg-white/5 opacity-60 border border-white/10 rounded-full">
-                        {project.role}
-                    </span>
-                </div>
-
-                <h1 className="text-5xl lg:text-7xl font-bold mb-8 tracking-tighter leading-tight">
+            <Reveal style={{ marginBottom: 48 }}>
+                <span className="label" style={{ color: 'var(--text-secondary)' }}>
+                    Project {levelNum} of {getLevelTotal()}
+                </span>
+                <h1 className="h-display" style={{ margin: '12px 0 24px', fontSize: 'clamp(48px, 8vw, 120px)' }}>
                     {project.title}
                 </h1>
-                <p className="text-xl lg:text-2xl opacity-80 leading-relaxed max-w-3xl">
-                    {project.description}
-                </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-20 border-t border-white/10 pt-12">
-                <div className="lg:col-span-3">
-                    <div className="prose dark:prose-invert prose-lg max-w-none">
-                        <MDXRemote {...mdxSource} />
-                    </div>
-                </div>
-
-                <div className="lg:col-span-1 space-y-10">
-                    <div>
-                        <h4 className="text-xs font-bold uppercase tracking-widest mb-4 opacity-40">Technologies</h4>
-                        <div className="flex flex-wrap gap-2">
-                            {project.technologies.map(tech => (
-                                <span key={tech} className="text-sm px-3 py-1 bg-white/5 border border-white/10">
-                                    {tech}
-                                </span>
-                            ))}
+                <dl className="label" style={{ display: 'flex', gap: '12px 32px', flexWrap: 'wrap', margin: 0 }}>
+                    {[['Role', project.role], ['Type', project.type], ['Year', project.year], ['Platform', project.platform]].map(([k, v]) => (
+                        <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                            <dt style={{ color: 'var(--text-secondary)' }}>{k}</dt>
+                            <dd style={{ margin: 0 }}>{v}</dd>
                         </div>
-                    </div>
+                    ))}
+                </dl>
+            </Reveal>
 
-                    <div>
-                        <h4 className="text-xs font-bold uppercase tracking-widest mb-4 opacity-40">Links</h4>
-                        <div className="flex flex-col gap-3">
-                            {project.links.github && (
-                                <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="text-sm underline underline-offset-4 hover:text-blue-400">
-                                    GitHub Repository
-                                </a>
-                            )}
-                            {project.links.demo && (
-                                <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="text-sm underline underline-offset-4 hover:text-blue-400">
-                                    Live Demo
-                                </a>
-                            )}
-                            {project.links.external && (
-                                <a href={project.links.external} target="_blank" rel="noopener noreferrer" className="text-sm underline underline-offset-4 hover:text-blue-400">
-                                    External Link
-                                </a>
-                            )}
-                        </div>
+            <Reveal delay={0.1}>
+                <MediaPreview title={project.title} thumbnail={project.thumbnail} video={project.video} active aspect="16 / 9" sizes="(max-width: 1360px) 100vw, 1360px" priority />
+            </Reveal>
+
+            <Reveal delay={0.1} className="prose" style={{ marginTop: 48, marginBottom: 64, maxWidth: 720 }}>
+                <MDXRemote {...mdxSource} />
+            </Reveal>
+
+            {project.technologies.length > 0 && (
+                <Reveal style={{ marginBottom: 48 }}>
+                    <span className="label" style={{ color: 'var(--text-secondary)' }}>/ Technologies</span>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
+                        {project.technologies.map((tech) => (
+                            <span key={tech} className="label" style={{ border: '1px solid var(--border)', padding: '6px 10px', fontSize: 12 }}>
+                                {tech}
+                            </span>
+                        ))}
                     </div>
+                </Reveal>
+            )}
+
+            {hasLinks && (
+                <Reveal style={{ marginBottom: 64 }}>
+                    <span className="label" style={{ color: 'var(--text-secondary)' }}>/ Links</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12 }}>
+                        {project.links.github && (
+                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>
+                                GitHub Repository
+                            </a>
+                        )}
+                        {project.links.demo && (
+                            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>
+                                {linkLabel(project.links.demo, 'Live Demo')}
+                            </a>
+                        )}
+                        {project.links.external && (
+                            <a href={project.links.external} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>
+                                {linkLabel(project.links.external, 'External Link')}
+                            </a>
+                        )}
+                    </div>
+                </Reveal>
+            )}
+
+            {project.images.length > 0 && (
+                <div className="grid-sm" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 24, marginBottom: 64 }}>
+                    {project.images.map((img, i) => (
+                        <Reveal key={img} delay={Math.min(i * 0.08, 0.3)} style={{ position: 'relative', aspectRatio: '16 / 9', border: '1px solid var(--border)', overflow: 'hidden' }}>
+                            <Image
+                                src={img}
+                                alt={`${project.title} screenshot ${i + 1}`}
+                                fill
+                                sizes="(max-width: 760px) 100vw, 50vw"
+                                style={{ objectFit: 'cover' }}
+                            />
+                        </Reveal>
+                    ))}
                 </div>
-            </div>
+            )}
 
-            {/* Gallery Placeholder */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-                {project.images.map((img, i) => (
-                    <div
-                        key={i}
-                        className="aspect-video bg-white/5 flex items-center justify-center border border-white/10 text-xs opacity-20 uppercase font-bold tracking-widest"
+            {nextProject && (
+                <Reveal>
+                    <Link
+                        href={`/projects/${nextProject.id}`}
+                        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, borderTop: '1px solid var(--border)', paddingTop: 24 }}
                     >
-                        Screenshot {i + 1}
-                    </div>
-                ))}
-            </div>
+                        <span className="label" style={{ color: 'var(--text-secondary)' }}>Next project →</span>
+                        <span className="h-display" style={{ fontSize: 32 }}>{nextProject.title}</span>
+                    </Link>
+                </Reveal>
+            )}
         </div>
     );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const projects = getAllProjects();
-    const paths = projects.map((p) => ({
-        params: { id: p.id },
-    }));
+    const paths = projects.map((p) => ({ params: { id: p.id } }));
 
     return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const project = getProjectById(params?.id as string);
+    const projects = getAllProjects();
+    const index = projects.findIndex((p) => p.id === params?.id);
+    const project = projects[index];
 
     if (!project) {
         return { notFound: true };
     }
 
     const mdxSource = await serialize(project.overview);
+    const nextProject = projects[(index + 1) % projects.length] ?? null;
 
     return {
         props: {
             project,
             mdxSource,
+            nextProject,
         },
     };
 };

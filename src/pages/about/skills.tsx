@@ -1,5 +1,6 @@
 import SEO from '@/components/SEO';
 import AboutSubNav from '@/components/AboutSubNav';
+import Reveal from '@/components/Reveal';
 
 const SKILLS = [
     {
@@ -23,54 +24,46 @@ const LANGUAGES = [
 
 export default function Skills() {
     return (
-        <div className="p-8 lg:p-20 max-w-5xl">
+        <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 24px 96px' }}>
             <SEO title="Skills" />
-            <h1 className="text-4xl lg:text-5xl font-bold mb-8 tracking-tight">Skills & Languages</h1>
+            <Reveal>
+                <span className="label">/ About</span>
+                <h1 className="h-display" style={{ margin: '12px 0 32px', fontSize: 'clamp(48px, 8vw, 96px)' }}>
+                    Skills &amp; languages
+                </h1>
+            </Reveal>
 
             <AboutSubNav />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+            <div className="grid-sm" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 40, marginBottom: 56 }}>
                 {SKILLS.map((set, i) => (
-                    <div key={i}>
-                        <h2 className="text-xl font-bold mb-6 flex items-center gap-3">
-                            <span className="w-8 h-px" style={{ backgroundColor: 'var(--accent)' }} />
-                            {set.category}
-                        </h2>
-                        <div className="flex flex-wrap gap-2">
-                            {set.items.map(item => (
+                    <Reveal key={set.category} delay={Math.min(i * 0.08, 0.3)}>
+                        <h2 className="label" style={{ marginBottom: 16, color: 'var(--text-secondary)' }}>/ {set.category}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                            {set.items.map((item) => (
                                 <span
                                     key={item}
-                                    className="px-3 py-1.5 text-sm font-medium border"
-                                    style={{
-                                        backgroundColor: 'var(--bg-secondary)',
-                                        borderColor: 'var(--border)',
-                                        color: 'var(--text)'
-                                    }}
+                                    style={{ padding: '6px 12px', fontSize: 14, border: '1px solid var(--border)' }}
                                 >
                                     {item}
                                 </span>
                             ))}
                         </div>
-                    </div>
+                    </Reveal>
                 ))}
             </div>
 
-            <h2 className="text-3xl font-bold mb-8 tracking-tight">Languages</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {LANGUAGES.map((lang, i) => (
-                    <div
-                        key={i}
-                        className="p-6 border"
-                        style={{
-                            backgroundColor: 'var(--card-bg)',
-                            borderColor: 'var(--border)'
-                        }}
-                    >
-                        <h3 className="text-lg font-bold mb-1">{lang.name}</h3>
-                        <p className="text-sm opacity-60">{lang.level}</p>
-                    </div>
-                ))}
-            </div>
+            <Reveal>
+                <h2 className="h-display" style={{ fontSize: 32, marginBottom: 24 }}>Languages</h2>
+                <div className="grid-sm" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 16 }}>
+                    {LANGUAGES.map((lang) => (
+                        <div key={lang.name} style={{ padding: 20, border: '1px solid var(--border)' }}>
+                            <h3 style={{ margin: 0, fontSize: 18, fontWeight: 600 }}>{lang.name}</h3>
+                            <p className="label" style={{ margin: '4px 0 0', color: 'var(--text-secondary)' }}>{lang.level}</p>
+                        </div>
+                    ))}
+                </div>
+            </Reveal>
         </div>
     );
 }

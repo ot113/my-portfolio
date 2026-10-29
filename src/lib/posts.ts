@@ -34,6 +34,20 @@ export function getAllPosts(): PostMeta[] {
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
+const PVZ_POST: PostMeta = {
+    slug: 'pvz-deconstruction',
+    title: 'How PvZ teaches without telling',
+    date: '2025-05-16',
+    excerpt: "A teardown of PopCap's 2009 lawn defense, organized around four design pillars.",
+    thumbnail: '',
+    readingTime: 10,
+    published: true,
+};
+
+export function getAllPostsWithPvz(): PostMeta[] {
+    return [PVZ_POST, ...getAllPosts()].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
 export function getPostBySlug(slug: string): { meta: PostMeta; content: string } | null {
     const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
     if (!fs.existsSync(filePath)) return null;

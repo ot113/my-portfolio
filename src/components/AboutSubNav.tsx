@@ -12,19 +12,27 @@ export default function AboutSubNav() {
     const router = useRouter();
 
     return (
-        <nav className="flex flex-wrap gap-6 mb-12 border-b border-white/10 pb-4">
-            {LINKS.map((link) => (
-                <Link
-                    key={link.href}
-                    href={link.href}
-                    className="text-sm font-semibold transition-colors duration-200"
-                    style={{
-                        color: router.pathname === link.href ? 'var(--accent)' : 'var(--text-muted)'
-                    }}
-                >
-                    {link.label}
-                </Link>
-            ))}
+        <nav
+            className="label"
+            style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginBottom: 48, borderBottom: '1px solid var(--border)', paddingBottom: 16 }}
+        >
+            {LINKS.map((link) => {
+                const active = router.pathname === link.href;
+                return (
+                    <Link
+                        key={link.href}
+                        href={link.href}
+                        aria-current={active ? 'page' : undefined}
+                        style={{
+                            color: active ? 'var(--accent)' : 'var(--text-secondary)',
+                            textDecoration: active ? 'underline' : 'none',
+                            textUnderlineOffset: 4,
+                        }}
+                    >
+                        {link.label}
+                    </Link>
+                );
+            })}
         </nav>
     );
 }

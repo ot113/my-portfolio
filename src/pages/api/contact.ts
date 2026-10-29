@@ -26,8 +26,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         console.log('Resend Response:', data);
         return res.status(200).json(data);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Resend Error:', error);
-        return res.status(500).json({ message: error.message });
+        const message = error instanceof Error ? error.message : 'Something went wrong';
+        return res.status(500).json({ message });
     }
 }

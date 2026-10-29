@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import SEO from '@/components/SEO';
+import Reveal from '@/components/Reveal';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type FormData = {
@@ -8,6 +9,15 @@ type FormData = {
     email: string;
     subject: string;
     message: string;
+};
+
+const fieldStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '14px 16px',
+    backgroundColor: 'var(--bg)',
+    border: '1px solid var(--border)',
+    color: 'var(--text)',
+    outline: 'none',
 };
 
 export default function Contact() {
@@ -31,36 +41,39 @@ export default function Contact() {
                 const err = await res.json();
                 throw new Error(err.message || 'Something went wrong');
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             setStatus('error');
-            setErrorMessage(err.message);
+            setErrorMessage(err instanceof Error ? err.message : 'Something went wrong');
         }
     };
 
     return (
-        <div className="p-8 lg:p-20 max-w-4xl mx-auto">
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px 96px' }}>
             <SEO title="Contact" description="Get in touch with Oğuzcan Taşkın." />
 
-            <div className="mb-12">
-                <h1 className="text-4xl lg:text-5xl font-bold mb-4 tracking-tight">Get in Touch</h1>
-                <p className="text-lg opacity-70">Have a project in mind or just want to say hi?</p>
-            </div>
+            <Reveal>
+                <span className="label">/ Contact</span>
+                <h1 className="h-display" style={{ margin: '12px 0 48px', fontSize: 'clamp(48px, 8vw, 96px)' }}>
+                    Get in touch
+                </h1>
+            </Reveal>
 
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
-                <div className="lg:col-span-3">
+            <div className="grid-sm" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0, 1fr))', gap: 48 }}>
+                <Reveal delay={0.1} style={{ gridColumn: 'span 3' }}>
                     <AnimatePresence mode="wait">
                         {status === 'success' ? (
                             <motion.div
                                 key="success"
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="p-8 border border-green-500/20 bg-green-500/5 rounded-lg mb-8"
+                                style={{ padding: 32, border: '1px solid var(--border)' }}
                             >
-                                <h3 className="text-xl font-bold text-green-500 mb-2">Message Sent!</h3>
-                                <p className="opacity-70">Thank you! Your message has been sent successfully. I'll get back to you soon.</p>
+                                <h3 className="h-display" style={{ fontSize: 24, color: 'var(--accent)', marginBottom: 8 }}>Message sent!</h3>
+                                <p style={{ color: 'var(--text-secondary)' }}>Thank you, your message has been sent successfully. I&apos;ll get back to you soon.</p>
                                 <button
                                     onClick={() => setStatus('idle')}
-                                    className="mt-6 text-sm font-bold uppercase tracking-widest underline underline-offset-4"
+                                    className="label"
+                                    style={{ marginTop: 24, textDecoration: 'underline', textUnderlineOffset: 4, background: 'none', border: 'none', padding: 0, color: 'var(--text)' }}
                                 >
                                     Send another message
                                 </button>
@@ -71,87 +84,88 @@ export default function Contact() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 onSubmit={handleSubmit(onSubmit)}
-                                className="space-y-6"
+                                style={{ display: 'flex', flexDirection: 'column', gap: 24 }}
                             >
                                 {status === 'error' && (
-                                    <div className="p-4 border border-red-500/20 bg-red-500/5 text-red-500 text-sm rounded">
+                                    <div style={{ padding: 16, border: '1px solid var(--accent)', color: 'var(--accent)', fontSize: 14 }}>
                                         {errorMessage}
                                     </div>
                                 )}
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-widest opacity-40">Name *</label>
+                                <div className="grid-sm" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 24 }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                        <label className="label" style={{ color: 'var(--text-secondary)' }}>Name *</label>
                                         <input
                                             {...register('name', { required: 'Name is required' })}
-                                            className="w-full p-4 bg-white/5 border border-white/10 focus:border-blue-500 outline-none transition-colors"
-                                            placeholder="Your Name"
+                                            style={fieldStyle}
+                                            placeholder="Your name"
                                         />
-                                        {errors.name && <p className="text-xs text-red-500">{errors.name.message}</p>}
+                                        {errors.name && <p style={{ fontSize: 13, color: 'var(--accent)' }}>{errors.name.message}</p>}
                                     </div>
-                                    <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-widest opacity-40">Email *</label>
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                        <label className="label" style={{ color: 'var(--text-secondary)' }}>Email *</label>
                                         <input
                                             {...register('email', {
                                                 required: 'Email is required',
                                                 pattern: { value: /^\S+@\S+$/i, message: 'Invalid email address' }
                                             })}
-                                            className="w-full p-4 bg-white/5 border border-white/10 focus:border-blue-500 outline-none transition-colors"
+                                            style={fieldStyle}
                                             placeholder="your@email.com"
                                         />
-                                        {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
+                                        {errors.email && <p style={{ fontSize: 13, color: 'var(--accent)' }}>{errors.email.message}</p>}
                                     </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-widest opacity-40">Subject *</label>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                    <label className="label" style={{ color: 'var(--text-secondary)' }}>Subject *</label>
                                     <input
                                         {...register('subject', { required: 'Subject is required' })}
-                                        className="w-full p-4 bg-white/5 border border-white/10 focus:border-blue-500 outline-none transition-colors"
+                                        style={fieldStyle}
                                         placeholder="What's this about?"
                                     />
-                                    {errors.subject && <p className="text-xs text-red-500">{errors.subject.message}</p>}
+                                    {errors.subject && <p style={{ fontSize: 13, color: 'var(--accent)' }}>{errors.subject.message}</p>}
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-widest opacity-40">Message *</label>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                                    <label className="label" style={{ color: 'var(--text-secondary)' }}>Message *</label>
                                     <textarea
                                         {...register('message', { required: 'Message is required' })}
                                         rows={6}
-                                        className="w-full p-4 bg-white/5 border border-white/10 focus:border-blue-500 outline-none transition-colors resize-none"
+                                        style={{ ...fieldStyle, resize: 'none' }}
                                         placeholder="Your message here..."
                                     />
-                                    {errors.message && <p className="text-xs text-red-500">{errors.message.message}</p>}
+                                    {errors.message && <p style={{ fontSize: 13, color: 'var(--accent)' }}>{errors.message.message}</p>}
                                 </div>
 
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full py-4 bg-blue-600 text-white font-bold uppercase tracking-widest hover:bg-blue-700 disabled:opacity-50 transition-all"
+                                    className="label"
+                                    style={{ padding: '16px 18px', background: 'var(--text)', color: 'var(--bg)', opacity: isSubmitting ? 0.5 : 1 }}
                                 >
-                                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                                    {isSubmitting ? 'Sending...' : 'Send message'}
                                 </button>
                             </motion.form>
                         )}
                     </AnimatePresence>
-                </div>
+                </Reveal>
 
-                <div className="lg:col-span-2 space-y-12">
+                <Reveal delay={0.18} style={{ gridColumn: 'span 2', display: 'flex', flexDirection: 'column', gap: 40 }}>
                     <div>
-                        <h4 className="text-xs font-bold uppercase tracking-widest mb-6 opacity-40">Social Links</h4>
-                        <div className="space-y-4">
-                            <a href="https://linkedin.com/in/oguzcan-taskin" target="_blank" rel="noopener noreferrer" className="block text-lg font-bold hover:text-blue-400 transition-colors">LinkedIn</a>
-                            <a href="https://github.com/ot113" target="_blank" rel="noopener noreferrer" className="block text-lg font-bold hover:text-blue-400 transition-colors">GitHub</a>
-                            <a href="https://ototot.itch.io" target="_blank" rel="noopener noreferrer" className="block text-lg font-bold hover:text-blue-400 transition-colors">Itch.io</a>
+                        <span className="label" style={{ color: 'var(--text-secondary)' }}>/ Elsewhere</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 16, fontSize: 18, fontWeight: 600 }}>
+                            <a href="https://linkedin.com/in/oguzcan-taskin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                            <a href="https://github.com/ot113" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <a href="https://ototot.itch.io" target="_blank" rel="noopener noreferrer">Itch.io</a>
                         </div>
                     </div>
 
                     <div>
-                        <h4 className="text-xs font-bold uppercase tracking-widest mb-4 opacity-40">Location</h4>
-                        <p className="text-lg font-medium">Ankara / Türkiye</p>
-                        <p className="text-sm opacity-60 mt-1">Middle East Technical University (METU).</p>
+                        <span className="label" style={{ color: 'var(--text-secondary)' }}>/ Based in</span>
+                        <p style={{ margin: '16px 0 4px', fontSize: 18, fontWeight: 600 }}>Ankara / Türkiye</p>
+                        <p style={{ margin: 0, color: 'var(--text-secondary)' }}>Middle East Technical University (METU)</p>
                     </div>
-                </div>
+                </Reveal>
             </div>
         </div>
     );
