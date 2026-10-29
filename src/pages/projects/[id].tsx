@@ -58,10 +58,9 @@ export default function ProjectDetail({ project, mdxSource, nextProject }: Proje
                         href={playUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="label"
-                        style={{ display: 'inline-block', marginTop: 28, background: 'var(--text)', color: 'var(--bg)', padding: '13px 18px' }}
+                        className="play-btn"
                     >
-                        Play on itch.io →
+                        <span aria-hidden="true">▶</span> Play on itch.io
                     </a>
                 )}
             </Reveal>

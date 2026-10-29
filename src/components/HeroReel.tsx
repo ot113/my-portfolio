@@ -101,7 +101,7 @@ export default function HeroReel({ reel, video, poster }: HeroReelProps) {
                     </h1>
                     <p style={{ margin: 0, fontSize: 'clamp(20px, 1.9vw, 26px)', fontWeight: 500 }}>Level Designer</p>
                     <div className="label" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                        <Link href="/projects" style={{ background: 'var(--text-inverse)', color: 'var(--text)', padding: '13px 18px' }}>
+                        <Link href="/projects" style={{ background: 'var(--text-inverse)', color: 'var(--bg-inverse)', padding: '13px 18px' }}>
                             See all work →
                         </Link>
                         <Link href="/contact" style={{ border: '1px solid var(--text-inverse)', padding: '12px 18px' }}>

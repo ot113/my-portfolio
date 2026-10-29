@@ -12,7 +12,7 @@ function FooterCol({ label, children }: { label: string; children: ReactNode }) 
 
 export function FullFooter() {
     return (
-        <footer id="contact" style={{ backgroundColor: 'var(--accent)', color: 'var(--text)' }}>
+        <footer id="contact" style={{ backgroundColor: 'var(--accent)', color: 'var(--on-accent)' }}>
             <div style={{ maxWidth: 1360, margin: '0 auto', padding: '48px 24px 28px' }}>
                 <Link
                     href="/contact"

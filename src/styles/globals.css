@@ -11,6 +11,70 @@
   --text-inverse: #F2F1EC;
   --text-inverse-secondary: #A9A79F;
   --border-inverse: #F2F1EC;
+
+  --on-accent: #111111;
+  color-scheme: light;
+}
+
+/* Dark theme: follows the OS unless the toggle in the header picked one */
+:root[data-theme="dark"] {
+  --bg: #121211;
+  --text: #F2F1EC;
+  --text-secondary: #A9A79F;
+  --border: #F2F1EC;
+
+  --bg-inverse: #1F1E1C;
+  --text-inverse: #F2F1EC;
+  --text-inverse-secondary: #A9A79F;
+  --border-inverse: #F2F1EC;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211;
+    --text: #F2F1EC;
+    --text-secondary: #A9A79F;
+    --border: #F2F1EC;
+
+    --bg-inverse: #1F1E1C;
+    --text-inverse: #F2F1EC;
+    --text-inverse-secondary: #A9A79F;
+    --border-inverse: #F2F1EC;
+    color-scheme: dark;
+  }
+}
+
+/* Main call to action on project pages: accent block with a hard ink shadow */
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 14px 22px;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 2px solid var(--text);
+  box-shadow: 5px 5px 0 var(--text);
+  font-family: var(--font-archivo), "Arial Narrow", Arial, sans-serif;
+  font-stretch: 62%;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.02;
+  padding-top: calc(14px + 0.08em);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.play-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--text);
+}
+.play-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .play-btn { transition: none; }
 }
 
 *,

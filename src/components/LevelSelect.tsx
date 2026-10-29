@@ -97,8 +97,8 @@ export default function LevelSelect({ projects }: LevelSelectProps) {
                                         borderBottom: '1px solid #3A3936',
                                         alignItems: 'baseline',
                                         outlineOffset: -2,
-                                        backgroundColor: on ? 'var(--bg)' : 'transparent',
-                                        color: on ? 'var(--text)' : 'var(--text-inverse)',
+                                        backgroundColor: on ? 'var(--text-inverse)' : 'transparent',
+                                        color: on ? 'var(--bg-inverse)' : 'var(--text-inverse)',
                                     }}
                                 >
                                     <span className="label" style={{ fontSize: 13 }}>{on ? `▶ ${num}` : num}</span>

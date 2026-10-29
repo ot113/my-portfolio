@@ -112,7 +112,7 @@ export default function PvzArticle({ date, readingTime }: { date: string; readin
                         </thead>
                         <tbody>
                             {WORLD_MATRIX.map((w, i) => (
-                                <tr key={w.w} style={{ borderTop: i ? '1px solid rgba(17,17,17,.22)' : undefined, verticalAlign: 'top' }}>
+                                <tr key={w.w} style={{ borderTop: i ? '1px solid color-mix(in srgb, var(--text) 22%, transparent)' : undefined, verticalAlign: 'top' }}>
                                     <th scope="row" className="h-display" style={{ padding: '14px', fontSize: 26, textAlign: 'left' }}>{w.w}</th>
                                     <td style={{ padding: '14px', color: '#A04C3A' }}>{w.removes}</td>
                                     <td style={{ padding: '14px' }}>{w.adds}</td>

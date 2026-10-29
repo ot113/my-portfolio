@@ -1,14 +1,14 @@
 import { useMemo, useState } from 'react';
 import { ANNOTATIONS, KIND_LABEL, LEVELS, METRICS, RATIONALE, REST_KINDS, WORLDS, type Level } from './data';
 
-// SVG attributes take literal colours, so the site tokens are mirrored here
-const INK = '#111111';
-const INK2 = '#5F5E58';
-const BG = '#F2F1EC';
+// Theme tokens, so the chart follows dark mode (var() works in SVG presentation attributes)
+const INK = 'var(--text)';
+const INK2 = 'var(--text-secondary)';
+const BG = 'var(--bg)';
 const ACCENT = '#E4572E';
 const FINALE = '#A04C3A';
-const GRID = 'rgba(17,17,17,.1)';
-const RULE = 'rgba(17,17,17,.22)';
+const GRID = 'color-mix(in srgb, var(--text) 10%, transparent)';
+const RULE = 'color-mix(in srgb, var(--text) 22%, transparent)';
 
 const SMOOTHING = 0.18;
 const W = 1180;
