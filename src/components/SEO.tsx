@@ -43,9 +43,10 @@ export default function SEO({ title, description, image, url }: SEOProps) {
             <meta name="twitter:image" content={`${siteUrl}${metaImage}`} />
 
             <link rel="canonical" href={fullUrl} />
-            <link rel="icon" href="/favicon.ico" sizes="48x48" />
-            <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
-            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+            {/* ?v= busts browsers' favicon cache, which ignores normal reloads; bump it when the icon changes */}
+            <link rel="icon" href="/favicon.ico?v=3" sizes="48x48" />
+            <link rel="icon" href="/icon.png?v=3" type="image/png" sizes="32x32" />
+            <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
         </Head>
     );
 }
