@@ -11,8 +11,8 @@ import { Project } from '@/types/project';
 
 type ViewMode = 'grid' | 'list';
 
-// Filter by what kind of work it is; the tag list grew too long to scan
-const CATEGORY_ORDER: Project['category'][] = ['Commercial', 'Solo', 'Jam', 'Docs'];
+// Filter by what kind of work it is; the tag list grew too long to scan. Tools shows up once a tool project exists
+const CATEGORY_ORDER: Project['category'][] = ['Games', 'Docs', 'Tools'];
 
 interface WorkProps {
     projects: Project[];

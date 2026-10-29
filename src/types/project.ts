@@ -6,7 +6,7 @@ export interface Project {
   role: string;                  // e.g. "Game Designer, Developer"
   year: number;
   tags: string[];                // Freeform tags, shown as technology chips
-  category: "Commercial" | "Solo" | "Jam" | "Docs"; // Work page filter group
+  category: "Games" | "Docs" | "Tools"; // Work page filter group
   type: string;                  // Genre descriptor for meta row, e.g. "Horror / PC"
   platform: string;              // e.g. "PC", "Mobile"
   thumbnail: string;             // Path relative to /public, e.g. "/images/projects/araroi-thumb.jpg"
