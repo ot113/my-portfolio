@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
     { href: '/projects', label: 'Work' },
@@ -62,6 +63,8 @@ export default function Header() {
                     </a>
                 </nav>
             </div>
+            {/* Hangs just below the bar on the right edge, so it sticks with the header */}
+            <ThemeToggle />
         </header>
     );
 }

@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import Header from './Header';
 import { FullFooter, MinimalFooter } from './Footer';
-import ThemeToggle from './ThemeToggle';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -16,7 +15,6 @@ export default function Layout({ children }: LayoutProps) {
             <Header />
             <main>{children}</main>
             {isHome ? <FullFooter /> : <MinimalFooter />}
-            <ThemeToggle />
         </div>
     );
 }
