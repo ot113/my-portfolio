@@ -6,20 +6,23 @@ import SEO from '@/components/SEO';
 import ProjectCard from '@/components/ProjectCard';
 import Reveal from '@/components/Reveal';
 import FilterBar, { chipStyle } from '@/components/FilterBar';
-import { getAllProjects, getAllTags } from '@/lib/projects';
+import { getAllProjects } from '@/lib/projects';
 import { Project } from '@/types/project';
 
 type ViewMode = 'grid' | 'list';
 
+// Filter by what kind of work it is; the tag list grew too long to scan
+const CATEGORY_ORDER: Project['category'][] = ['Commercial', 'Solo', 'Jam', 'Docs'];
+
 interface WorkProps {
     projects: Project[];
-    tags: string[];
+    categories: string[];
 }
 
-export default function Work({ projects, tags }: WorkProps) {
+export default function Work({ projects, categories }: WorkProps) {
     const router = useRouter();
     const [hydrated, setHydrated] = useState(false);
-    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const [category, setCategory] = useState<string | null>(null);
     const [view, setView] = useState<ViewMode>('grid');
     const [activeId, setActiveId] = useState<string | null>(null);
     const itemRefs = useRef<Record<string, HTMLElement | null>>({});
@@ -27,18 +30,18 @@ export default function Work({ projects, tags }: WorkProps) {
     useEffect(() => {
         // One-time hydration from the browser URL (SSG build can't know query params at build time).
         const params = new URLSearchParams(window.location.search);
-        const fromUrl = (params.get('tags') ?? '').split(',').filter((t) => tags.includes(t));
+        const fromUrl = params.get('category');
         const v = params.get('view');
         // eslint-disable-next-line react-hooks/set-state-in-effect
-        setSelectedTags(fromUrl);
+        setCategory(fromUrl && categories.includes(fromUrl) ? fromUrl : null);
         setView(v === 'list' ? 'list' : 'grid');
         setHydrated(true);
-    }, [tags]);
+    }, [categories]);
 
-    const updateQuery = (next: { tags?: string[]; view?: ViewMode }) => {
+    const updateQuery = (next: { category?: string | null; view?: ViewMode }) => {
         const query: Record<string, string> = { ...(router.query as Record<string, string>) };
-        if (next.tags !== undefined) {
-            if (next.tags.length === 0) delete query.tags; else query.tags = next.tags.join(',');
+        if (next.category !== undefined) {
+            if (next.category === null) delete query.category; else query.category = next.category;
         }
         if (next.view !== undefined) {
             if (next.view === 'grid') delete query.view; else query.view = next.view;
@@ -46,15 +49,13 @@ export default function Work({ projects, tags }: WorkProps) {
         router.push({ pathname: router.pathname, query }, undefined, { shallow: true });
     };
 
-    const setTagsAndSync = (next: string[]) => { setSelectedTags(next); updateQuery({ tags: next }); };
-    const toggleTag = (tag: string) =>
-        setTagsAndSync(selectedTags.includes(tag) ? selectedTags.filter((t) => t !== tag) : [...selectedTags, tag]);
+    const setCategoryAndSync = (next: string | null) => { setCategory(next); updateQuery({ category: next }); };
+    const toggleCategory = (c: string) => setCategoryAndSync(category === c ? null : c);
     const setViewAndSync = (v: ViewMode) => { setView(v); updateQuery({ view: v }); };
 
-    // AND filtering: a project must have every selected tag
     const items = useMemo(
-        () => (selectedTags.length === 0 ? projects : projects.filter((p) => selectedTags.every((t) => p.tags.includes(t)))),
-        [projects, selectedTags]
+        () => (category === null ? projects : projects.filter((p) => p.category === category)),
+        [projects, category]
     );
 
     useEffect(() => {
@@ -90,7 +91,7 @@ export default function Work({ projects, tags }: WorkProps) {
                 className="stack-sm label"
                 style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, flexWrap: 'nowrap', padding: '14px 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}
             >
-                <FilterBar tags={tags} selectedTags={selectedTags} onToggleTag={toggleTag} onClear={() => setTagsAndSync([])} />
+                <FilterBar tags={categories} selectedTags={category ? [category] : []} onToggleTag={toggleCategory} onClear={() => setCategoryAndSync(null)} />
                 <div role="group" aria-label="View" style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
                     <button type="button" onClick={() => setViewAndSync('grid')} aria-pressed={view === 'grid'} style={chipStyle(view === 'grid')}>
                         Grid
@@ -154,23 +155,12 @@ export default function Work({ projects, tags }: WorkProps) {
                 </div>
             )}
 
-            {items.length === 0 && (
-                <div style={{ padding: '64px 0', textAlign: 'center' }}>
-                    <p style={{ margin: '0 0 20px', color: 'var(--text-secondary)' }}>No projects match all of the selected tags.</p>
-                    <div className="label" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6 }}>
-                        <span style={{ alignSelf: 'center', marginRight: 8, color: 'var(--text-secondary)' }}>Try:</span>
-                        {tags.map((tag) => (
-                            <button key={tag} type="button" onClick={() => setTagsAndSync([tag])} style={chipStyle(false)}>
-                                {tag}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-    return { props: { projects: getAllProjects(), tags: getAllTags() } };
+    const projects = getAllProjects();
+    const categories = CATEGORY_ORDER.filter((c) => projects.some((p) => p.category === c));
+    return { props: { projects, categories } };
 };

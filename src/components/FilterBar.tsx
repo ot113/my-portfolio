@@ -17,7 +17,7 @@ export function chipStyle(selected: boolean): React.CSSProperties {
 
 export default function FilterBar({ tags, selectedTags, onToggleTag, onClear }: FilterBarProps) {
     return (
-        <div role="group" aria-label="Filter by tag" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, flex: '1 1 auto', minWidth: 0 }}>
+        <div role="group" aria-label="Filter by category" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, flex: '1 1 auto', minWidth: 0 }}>
             <button type="button" onClick={onClear} aria-pressed={selectedTags.length === 0} style={chipStyle(selectedTags.length === 0)}>
                 All projects
             </button>
