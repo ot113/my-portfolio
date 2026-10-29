@@ -17,8 +17,9 @@ interface ProjectDetailProps {
 
 /* Name store links after the store, so OUTAGE reads "itch.io" and "Steam" instead of two generic labels */
 function linkLabel(url: string, fallback: string) {
-    if (url.includes('store.steampowered.com')) return 'Steam';
-    if (url.includes('itch.io')) return 'itch.io';
+    if (url.includes('store.steampowered.com')) return 'View on Steam';
+    if (url.includes('itch.io')) return 'Play on itch.io';
+    if (url.includes('docs.google.com')) return 'Read the document';
     return fallback;
 }
 
@@ -26,6 +27,8 @@ export default function ProjectDetail({ project, mdxSource, nextProject }: Proje
     const levelNum = getLevelNumber(project.id);
 
     const hasLinks = project.links.github || project.links.demo || project.links.external;
+    // A playable itch.io build gets a button next to the title, not just a line in the links list
+    const playUrl = [project.links.demo, project.links.external].find((url) => url?.includes('itch.io'));
 
     return (
         <div style={{ maxWidth: 1360, margin: '0 auto', padding: '48px 24px 96px' }}>
@@ -50,6 +53,17 @@ export default function ProjectDetail({ project, mdxSource, nextProject }: Proje
                         </div>
                     ))}
                 </dl>
+                {playUrl && (
+                    <a
+                        href={playUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="label"
+                        style={{ display: 'inline-block', marginTop: 28, background: 'var(--text)', color: 'var(--bg)', padding: '13px 18px' }}
+                    >
+                        Play on itch.io →
+                    </a>
+                )}
             </Reveal>
 
             <Reveal delay={0.1}>

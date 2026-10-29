@@ -23,7 +23,7 @@ const REEL_CUTS = [
 interface HomeProps {
     projects: Project[];
     reel: ReelClip[];
-    note: PostMeta;
+    notes: PostMeta[];
 }
 
 function ProfileCol({ label, items }: { label: string; items: string[] }) {
@@ -37,9 +37,10 @@ function ProfileCol({ label, items }: { label: string; items: string[] }) {
     );
 }
 
-export default function Home({ projects, reel, note }: HomeProps) {
-    const noteDate = new Date(note.date).toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('.').join(' / ');
+const formatDate = (date: string) =>
+    new Date(date).toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' }).split('.').join(' / ');
 
+export default function Home({ projects, reel, notes }: HomeProps) {
     return (
         <div>
             <SEO />
@@ -75,15 +76,21 @@ export default function Home({ projects, reel, note }: HomeProps) {
                         <Link href="/blog" className="label" style={{ borderBottom: '1px solid var(--text)' }}>All posts →</Link>
                     </Reveal>
                     <Reveal delay={0.1}>
-                        <Link
-                            href={`/blog/${note.slug}`}
-                            className="stack-sm"
-                            style={{ display: 'flex', justifyContent: 'space-between', gap: 24, padding: '24px 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', alignItems: 'baseline' }}
-                        >
-                            <span className="label" style={{ whiteSpace: 'nowrap' }}>/ Latest <span style={{ color: 'var(--text-secondary)' }}>{noteDate}</span></span>
-                            <span style={{ flex: 1, fontSize: 'clamp(22px, 2.6vw, 34px)', fontWeight: 500, lineHeight: 1.15 }}>{note.title}</span>
-                            <span className="label" style={{ whiteSpace: 'nowrap' }}>{note.readingTime} min →</span>
-                        </Link>
+                        <ul style={{ listStyle: 'none', margin: 0, padding: 0, borderTop: '1px solid var(--border)' }}>
+                            {notes.map((note) => (
+                                <li key={note.slug} style={{ borderBottom: '1px solid var(--border)' }}>
+                                    <Link
+                                        href={`/blog/${note.slug}`}
+                                        className="stack-sm"
+                                        style={{ display: 'flex', justifyContent: 'space-between', gap: 24, padding: '24px 0', alignItems: 'baseline' }}
+                                    >
+                                        <span className="label" style={{ whiteSpace: 'nowrap', color: 'var(--text-secondary)' }}>{formatDate(note.date)}</span>
+                                        <span style={{ flex: 1, fontSize: 'clamp(22px, 2.6vw, 34px)', fontWeight: 500, lineHeight: 1.15 }}>{note.title}</span>
+                                        <span className="label" style={{ whiteSpace: 'nowrap' }}>{note.readingTime} min →</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </Reveal>
                 </div>
             </section>
@@ -102,9 +109,9 @@ export const getStaticProps: GetStaticProps = async () => {
         const p = all.find((x) => x.id === id);
         return p ? [{ at, id: p.id, title: p.title, type: p.type }] : [];
     });
-    const [note] = getAllPostsWithPvz();
+    const notes = getAllPostsWithPvz();
 
     return {
-        props: { projects, reel, note },
+        props: { projects, reel, notes },
     };
 };

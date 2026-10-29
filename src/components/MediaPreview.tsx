@@ -47,10 +47,22 @@ export default function MediaPreview({ title, thumbnail, video, active, aspect =
                     <Image src={thumbnail} alt={title} fill sizes={sizes} priority={priority} style={{ objectFit: 'contain' }} />
                 </>
             ) : (
+                // No media (design documents like the CardTower GDD): a plain document glyph stands in
                 !showVideo && (
-                    <span className="label" style={{ color: '#A9A79F', textAlign: 'center', padding: '0 24px' }}>
-                        [{title} görsel / video alanı]
-                    </span>
+                    <svg
+                        role="img"
+                        aria-label={`${title} (document)`}
+                        viewBox="0 0 48 60"
+                        style={{ width: '18%', maxWidth: 96, height: 'auto', color: '#A9A79F' }}
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinejoin="round"
+                    >
+                        <path d="M4 3h28l12 12v42H4z" />
+                        <path d="M32 3v12h12" />
+                        <path d="M12 27h24M12 35h24M12 43h16" strokeLinecap="round" />
+                    </svg>
                 )
             )}
             {showVideo && (

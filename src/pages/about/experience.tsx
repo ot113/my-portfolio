@@ -4,6 +4,12 @@ import Reveal from '@/components/Reveal';
 
 const EXPERIENCE = [
     {
+        role: "Jr. Level Designer",
+        company: "Panteon",
+        period: "Jul 2026 / Present",
+        description: "Designing and tuning levels for mobile puzzle games."
+    },
+    {
         role: "Co-Founder",
         company: "Team Indie Bindie",
         period: "Jan 2025 / Present",
