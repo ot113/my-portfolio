@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
-    { href: '/projects', label: 'Work' },
+    { href: '/projects', label: 'Projects' },
     { href: '/about', label: 'About' },
     { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact' },

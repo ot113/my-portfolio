@@ -76,11 +76,11 @@ export default function Work({ projects, categories }: WorkProps) {
 
     return (
         <div style={{ maxWidth: 1360, margin: '0 auto', padding: '48px 24px 96px' }}>
-            <SEO title="Work" />
+            <SEO title="Projects" />
 
             <Reveal className="stack-sm" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, marginBottom: 32 }}>
                 <h1 className="h-display" style={{ margin: 0, fontSize: 'clamp(72px, 13vw, 190px)', lineHeight: 1.02 }}>
-                    Work
+                    Projects
                 </h1>
                 <p style={{ margin: 0, maxWidth: 360, color: 'var(--text-secondary)' }}>
                     Shipped games, jam entries and design docs. Each page breaks down the problem, the levels and what I would change.

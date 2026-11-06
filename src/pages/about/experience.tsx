@@ -22,10 +22,10 @@ const EXPERIENCE = [
         description: "Contributed to the ideation process for various projects. Designed hybrid-casual puzzle game levels."
     },
     {
-        role: "Game Designer Intern",
+        role: "Game Design Intern",
         company: "UDO Games",
         period: "Jul 2025 / Aug 2025",
-        description: "Prototyping mobile game mechanics. Researched market trends to inform design decisions. Authored the CardTower GDD."
+        description: "Prototyped mobile game mechanics. Researched market trends to inform design decisions. Authored the CardTower GDD."
     },
     {
         role: "Board Member of Animation",
@@ -35,9 +35,15 @@ const EXPERIENCE = [
     },
     {
         role: "Game Design Intern",
-        company: "Easy Clap Games",
+        company: "EasyClap Games",
         period: "Jul 2024 / Sep 2024",
         description: "Created and updated game design documents. Assisted in crafting the game world and systemic interactions."
+    },
+    {
+        role: "Game Designer",
+        company: "Pre-Incubation Center, METU TEKNOKENT",
+        period: "Feb 2024 / May 2025",
+        description: "Designed the narrative and story for a game project. Created characters and their backstories."
     }
 ];
 

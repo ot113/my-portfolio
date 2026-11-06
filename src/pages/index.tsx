@@ -100,7 +100,7 @@ export default function Home({ projects, reel, notes }: HomeProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
     // Home projects run newest first; sort is stable, so same-year projects keep their listed order.
-    // The CardTower GDD stays on the Work page only.
+    // The CardTower GDD stays on the Projects page only.
     const projects = getAllProjects()
         .filter((p) => p.id !== 'cardtower-gdd')
         .sort((a, b) => b.year - a.year);

@@ -38,7 +38,7 @@ export function FullFooter() {
                         <a href="https://github.com/ot113" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </FooterCol>
                     <FooterCol label="Menu">
-                        <Link href="/projects">Work</Link>
+                        <Link href="/projects">Projects</Link>
                         <Link href="/about">About</Link>
                         <Link href="/blog">Blog</Link>
                     </FooterCol>

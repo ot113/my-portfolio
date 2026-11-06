@@ -4,12 +4,12 @@ import Reveal from '@/components/Reveal';
 
 const SKILLS = [
     {
-        category: "Game Design",
+        category: "Design",
         items: ["Level Design", "Narrative Design", "Mechanic Design", "Worldbuilding", "Storytelling"]
     },
     {
         category: "Tools & Engines",
-        items: ["Unity", "Unreal Engine", "C#", "Blender", "Figma", "Git"]
+        items: ["Unity", "Unreal Engine", "Godot", "C#", "Blender", "Figma", "Git"]
     },
     {
         category: "Other",

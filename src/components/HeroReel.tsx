@@ -99,10 +99,10 @@ export default function HeroReel({ reel, video, poster }: HeroReelProps) {
                     <h1 id="who" className="h-display" style={{ margin: 0, fontSize: 'clamp(64px, 11vw, 168px)' }}>
                         Oğuzcan<br />Taşkın
                     </h1>
-                    <p style={{ margin: 0, fontSize: 'clamp(20px, 1.9vw, 26px)', fontWeight: 500 }}>Level Designer</p>
+                    <p style={{ margin: 0, fontSize: 'clamp(20px, 1.9vw, 26px)', fontWeight: 500 }}>Level Designer at Panteon</p>
                     <div className="label" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                         <Link href="/projects" style={{ background: 'var(--text-inverse)', color: 'var(--bg-inverse)', padding: '13px 18px' }}>
-                            See all work →
+                            See all projects →
                         </Link>
                         <Link href="/contact" style={{ border: '1px solid var(--text-inverse)', padding: '12px 18px' }}>
                             Get in touch

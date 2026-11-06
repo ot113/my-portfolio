@@ -35,7 +35,7 @@ export default function ProjectDetail({ project, mdxSource, nextProject }: Proje
             <SEO title={project.title} description={project.description} />
 
             <Link href="/projects" className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 48 }}>
-                <span>←</span> Work
+                <span>←</span> Projects
             </Link>
 
             <Reveal style={{ marginBottom: 48 }}>
@@ -46,7 +46,7 @@ export default function ProjectDetail({ project, mdxSource, nextProject }: Proje
                     {project.title}
                 </h1>
                 <dl className="label" style={{ display: 'flex', gap: '12px 32px', flexWrap: 'wrap', margin: 0 }}>
-                    {[['Role', project.role], ['Type', project.type], ['Year', project.year], ['Platform', project.platform]].map(([k, v]) => (
+                    {[['Role', project.role], ['Type', project.type], ['Year', project.year], ['Platform', project.platform], ['Tools', project.technologies.join(', ')]].map(([k, v]) => (
                         <div key={k} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                             <dt style={{ color: 'var(--text-secondary)' }}>{k}</dt>
                             <dd style={{ margin: 0 }}>{v}</dd>
@@ -72,19 +72,6 @@ export default function ProjectDetail({ project, mdxSource, nextProject }: Proje
             <Reveal delay={0.1} className="prose" style={{ marginTop: 48, marginBottom: 64, maxWidth: 720 }}>
                 <MDXRemote {...mdxSource} />
             </Reveal>
-
-            {project.technologies.length > 0 && (
-                <Reveal style={{ marginBottom: 48 }}>
-                    <span className="label" style={{ color: 'var(--text-secondary)' }}>/ Technologies</span>
-                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
-                        {project.technologies.map((tech) => (
-                            <span key={tech} className="label" style={{ border: '1px solid var(--border)', padding: '6px 10px', fontSize: 12 }}>
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-                </Reveal>
-            )}
 
             {hasLinks && (
                 <Reveal style={{ marginBottom: 64 }}>

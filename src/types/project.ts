@@ -3,7 +3,7 @@ export interface Project {
   id: string;                    // URL-safe slug, e.g. "where-is-araroi"
   title: string;
   description: string;           // Short — used on listing card
-  role: string;                  // e.g. "Game Designer, Developer"
+  role: string;                  // e.g. "Level Designer, Developer"
   year: number;
   tags: string[];                // Freeform tags, shown as technology chips
   category: "Games" | "Docs" | "Tools"; // Work page filter group
