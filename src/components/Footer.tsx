@@ -27,7 +27,7 @@ export function FullFooter() {
                     style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 24, marginTop: 48, fontSize: 15 }}
                 >
                     <FooterCol label="Contact">
-                        <a href="mailto:taskino988@gmail.com">taskino988@gmail.com</a>
+                        <Link href="/contact">Send a message →</Link>
                     </FooterCol>
                     <FooterCol label="Based in">
                         <span>Ankara, Türkiye</span>
