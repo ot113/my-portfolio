@@ -9,7 +9,7 @@ const SKILLS = [
     },
     {
         category: "Tools & Engines",
-        items: ["Unity", "Unreal Engine", "Godot", "C#", "Blender", "Figma", "Git"]
+        items: ["Unity", "Unreal Engine", "Godot", "Love2D", "C#", "Blender", "Figma", "Git"]
     },
     {
         category: "Other",
