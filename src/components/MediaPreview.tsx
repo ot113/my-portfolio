@@ -10,12 +10,14 @@ interface MediaPreviewProps {
     aspect?: string;
     sizes?: string;
     priority?: boolean;
+    zoom?: boolean;      // gently scale the media in while active (cards), not on detail pages
 }
 
-export default function MediaPreview({ title, thumbnail, video, active, aspect = '16 / 10', sizes = '(max-width: 760px) 100vw, 50vw', priority = false }: MediaPreviewProps) {
+export default function MediaPreview({ title, thumbnail, video, active, aspect = '16 / 10', sizes = '(max-width: 760px) 100vw, 50vw', priority = false, zoom = false }: MediaPreviewProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const reducedMotion = useReducedMotion();
     const showVideo = Boolean(video) && !reducedMotion;
+    const zoomStyle = { transform: zoom && active && !reducedMotion ? 'scale(1.05)' : 'none', transition: 'transform .7s cubic-bezier(0.22, 1, 0.36, 1)' };
 
     useEffect(() => {
         if (!videoRef.current || !showVideo) return;
@@ -44,7 +46,7 @@ export default function MediaPreview({ title, thumbnail, video, active, aspect =
                 <>
                     {/* Thumbnails come in many shapes (banners, 4:3, 16:9): show the whole image, fill the rest with a blurred copy */}
                     <Image src={thumbnail} alt="" aria-hidden="true" fill sizes={sizes} priority={priority} style={{ objectFit: 'cover', filter: 'blur(24px) brightness(.55)', transform: 'scale(1.15)' }} />
-                    <Image src={thumbnail} alt={title} fill sizes={sizes} priority={priority} style={{ objectFit: 'contain' }} />
+                    <Image src={thumbnail} alt={title} fill sizes={sizes} priority={priority} style={{ objectFit: 'contain', ...zoomStyle }} />
                 </>
             ) : (
                 // No media (design documents like the CardTower GDD): a plain document glyph stands in
@@ -81,7 +83,8 @@ export default function MediaPreview({ title, thumbnail, video, active, aspect =
                         height: '100%',
                         objectFit: 'cover',
                         opacity: active ? 1 : 0,
-                        transition: 'opacity .4s ease',
+                        ...zoomStyle,
+                        transition: `opacity .4s ease, ${zoomStyle.transition}`,
                     }}
                 />
             )}

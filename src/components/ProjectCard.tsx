@@ -21,7 +21,7 @@ export default function ProjectCard({ project, highlighted = false }: ProjectCar
             onBlur={() => setHovered(false)}
             style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
         >
-            <MediaPreview title={project.title} thumbnail={project.thumbnail} video={project.video} active={on} aspect="16 / 10" />
+            <MediaPreview title={project.title} thumbnail={project.thumbnail} video={project.video} active={on} zoom aspect="16 / 10" />
             <div className="label" style={{ display: 'flex', justifyContent: 'space-between', gap: 8, fontSize: 12 }}>
                 <span>{on ? '▶ ' : ''}{project.type}</span>
                 <span style={{ color: 'var(--text-secondary)' }}>{project.year}</span>
