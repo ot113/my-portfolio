@@ -60,6 +60,9 @@ export default function Work({ projects, categories }: WorkProps) {
 
     useEffect(() => {
         if (!hydrated) return;
+        // Touch screens have no hover, so there the item in the middle of the screen lights up instead.
+        // With a mouse the highlight follows the pointer only, or a card would stay lit under nothing.
+        if (window.matchMedia('(hover: hover)').matches) return;
         const observer = new IntersectionObserver(
             (entries) => {
                 const visible = entries
@@ -130,6 +133,10 @@ export default function Work({ projects, categories }: WorkProps) {
                                     <Link
                                         href={`/projects/${p.id}`}
                                         className="row-sm hl-item"
+                                        onMouseEnter={() => setActiveId(p.id)}
+                                        onMouseLeave={() => setActiveId(null)}
+                                        onFocus={() => setActiveId(p.id)}
+                                        onBlur={() => setActiveId(null)}
                                         style={{
                                             display: 'grid',
                                             gridTemplateColumns: '90px minmax(0, 3fr) minmax(0, 2fr) minmax(0, 2fr) 90px',
