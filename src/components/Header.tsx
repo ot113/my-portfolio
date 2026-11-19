@@ -44,10 +44,7 @@ export default function Header() {
                             <Link
                                 href={link.href}
                                 aria-current={isActive(link.href) ? 'page' : undefined}
-                                style={{
-                                    textDecoration: isActive(link.href) ? 'underline' : 'none',
-                                    textUnderlineOffset: 4,
-                                }}
+                                className="nav-link"
                             >
                                 {link.label}
                             </Link>
@@ -57,7 +54,7 @@ export default function Header() {
                     <a
                         href="/cv/OguzcanTaskin_CV.pdf"
                         download="OguzcanTaskin_CV.pdf"
-                        style={{ background: 'var(--text)', color: 'var(--bg)', padding: '6px 10px' }}
+                        className="nav-cv"
                     >
                         CV ↓
                     </a>
