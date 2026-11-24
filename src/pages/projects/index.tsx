@@ -85,9 +85,6 @@ export default function Work({ projects, categories }: WorkProps) {
                 <h1 className="h-display" style={{ margin: 0, fontSize: 'clamp(72px, 13vw, 190px)', lineHeight: 1.02 }}>
                     Projects
                 </h1>
-                <p style={{ margin: 0, maxWidth: 360, color: 'var(--text-secondary)' }}>
-                    Shipped games, jam entries and design docs. Each page breaks down the problem, the levels and what I would change.
-                </p>
             </Reveal>
 
             <div

@@ -18,6 +18,7 @@ const REEL_CUTS = [
     { at: 4.25, id: 'where-is-azrael' },
     { at: 8.25, id: 'punnet' },
     { at: 12.25, id: 'analoglu-architecture' },
+    { at: 16.5, id: 'thats-a-weird-night' },
 ];
 
 interface HomeProps {
@@ -100,9 +101,9 @@ export default function Home({ projects, reel, notes }: HomeProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
     // Home projects run newest first; sort is stable, so same-year projects keep their listed order.
-    // The CardTower GDD stays on the Projects page only.
+    // The CardTower GDD and the tools (Build Replay) stay on the Projects page only.
     const projects = getAllProjects()
-        .filter((p) => p.id !== 'cardtower-gdd')
+        .filter((p) => p.id !== 'cardtower-gdd' && p.category !== 'Tools')
         .sort((a, b) => b.year - a.year);
     const all = getAllProjects();
     const reel: ReelClip[] = REEL_CUTS.flatMap(({ at, id }) => {

@@ -286,3 +286,12 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .nav-link, .nav-cv { transition: none; }
 }
+
+/* Interactive tools embedded in a project page (Build Replay) */
+.tool-embed {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin: 24px 0;
+  border: 1px solid var(--border);
+}

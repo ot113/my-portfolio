@@ -29,6 +29,26 @@
     "featured": true
   },
   {
+    "id": "thats-a-weird-night",
+    "title": "That's a Weird Night",
+    "description": "A short third-person stealth level in the spirit of Hitman. Lanark, 1297: one night, one garrison, three prisoners to get out without a fight.",
+    "role": "Level Designer, Developer",
+    "year": 2026,
+    "tags": ["Unity", "Stealth", "Level Design", "PSX", "3D"],
+    "category": "Games",
+    "type": "Stealth / Third Person",
+    "platform": "Web, PC",
+    "thumbnail": "/images/projects/thats-a-weird-night/cover.jpg",
+    "images": ["/images/projects/thats-a-weird-night/shot-1.jpg", "/images/projects/thats-a-weird-night/shot-2.jpg", "/images/projects/thats-a-weird-night/shot-3.jpg", "/images/projects/thats-a-weird-night/shot-4.jpg", "/images/projects/thats-a-weird-night/shot-5.jpg", "/images/projects/thats-a-weird-night/shot-6.jpg", "/images/projects/thats-a-weird-night/shot-7.jpg"],
+    "video": "/videos/weird-night-preview.mp4",
+    "overview": "## That's a Weird Night\n\nSummer 1297. The English hold Lanark with a garrison and a dungeon under its keep, and three Scots wait in that hole for the rope. You come down out of the trees at night to get them out, and you are no fighter. A short third-person stealth level in the spirit of Hitman: read the guards, slip past them, wear their colours and turn the garrison's own night against it. About 15 to 30 minutes, playable in the browser.\n\n### Core Mechanics\n- **Instinct**: hold Q to see guards through walls, where they walk and where you can hide.\n- **Disguises**: take a guard down from behind and wear his uniform, but the men of his own unit know his face.\n- **Bodies**: drag them out of the light; a body found raises the alarm.\n- **Light and cover**: barley and shadow hide you, torches and braziers give you away, and lights can be put out.\n- **The escape**: steal the jailer's keys, free the prisoners and let the riot cover your ride out of the gate.\n\n### Level Design\nThe level was planned with **[Encounter Lens](/projects/encounter-lens)**, a Unity tool I built for it. It reads every guard, light, piece of cover and hiding place in the scene and paints how likely the player is to be seen at each step of a route, so each zone could be tuned against a target before anyone played it.\n\n![The garrison from above: the intended route in blue, guards and their sightlines, and the risk of being seen in red.](/images/projects/thats-a-weird-night/encounter-lens-map.jpg)\n\n![Tension along the route: each zone has a target band (green), the red line is what the tool measures.](/images/projects/thats-a-weird-night/encounter-lens-tempo.png)\n\n- **Read at a glance**: every gap between buildings is either closed or at least 2 m wide, so the player always knows what fits.\n- **A tower as a compass**: the dungeon tower is visible from everywhere, and from the hill path it lines up with the crawl hole in the wall.\n- **Cover with a rhythm**: the barley field leaves a 5 m open run in front of the wall, timed against a guard's 12.5 m patrol.\n- **More than one way in**: the crawl hole under the palisade, the village rooftops and the wall walk.\n- **Story in the set dressing**: the garrison is under repair, with rubble, plank stacks, a rebel stash and names scratched on the dungeon wall.\n\nEvery step of the build, from the first greybox to the dressed night level, can be scrubbed through in the Build Replay on the [Encounter Lens](/projects/encounter-lens) page.",
+    "technologies": ["Unity", "C#", "Blender"],
+    "links": {
+      "demo": "https://ototot.itch.io/thats-a-weird-night"
+    },
+    "featured": true
+  },
+  {
     "id": "punnet",
     "title": "Punnet",
     "description": "Match-3 roguelike with run-shaping modifiers.",
@@ -204,6 +224,23 @@
     "links": {
       "external": "https://docs.google.com/document/d/1iedNQAsodUsHOfithDfZc2e8cDZfXLJE48te-vhPMBE/edit?tab=t.0#heading=h.z6ne0og04bp5"
     },
+    "featured": false
+  },
+  {
+    "id": "encounter-lens",
+    "title": "Encounter Lens",
+    "description": "A Unity level design tool I built for That's a Weird Night: it paints the risk of being seen, plots the tension along a route and scores encounter difficulty, with a Build Replay of the level's construction.",
+    "role": "Level Designer, Tools",
+    "year": 2026,
+    "tags": ["Unity", "Tools", "Level Design", "Editor Scripting"],
+    "category": "Tools",
+    "type": "Level Design Tool / Unity Editor",
+    "platform": "Unity Editor, Web",
+    "thumbnail": "/images/projects/encounter-lens/cover.jpg",
+    "images": ["/images/projects/encounter-lens/build-replay.jpg", "/images/projects/encounter-lens/greybox-diff.jpg"],
+    "overview": "## Encounter Lens\n\nA Unity editor tool I built while designing That's a Weird Night, to check a stealth level on paper before anyone plays it. It reads every guard (type, facing, patrol), light, piece of cover and solid wall in the scene, using the same vision numbers as the enemy AI at runtime.\n\n### What it does\n- **Heat map**: paints the risk of being seen on the floor of the Scene view.\n- **Tension along the route**: samples that risk along the intended route and plots it, zone by zone, against a target band for each zone. A zone that is too hard or too easy shows at once.\n- **Zones and side routes**: draw a zone in the Scene view and give it a target; side routes into a zone count toward its peak.\n- **Encounter area pen**: click the corners of an area on the ground and get a difficulty score from the enemies, herbs and space inside it, live in the Scene view and the Inspector.\n- **Build history**: one click saves a snapshot of the whole blockout with a note on the design decision behind it.\n\n![The garrison in the Scene view: the intended route in blue, guards and their sightlines, and the risk of being seen in red.](/images/projects/encounter-lens/heatmap.jpg)\n\n![Tension along the route: each zone has a target band (green), the red line is what the tool measures.](/images/projects/encounter-lens/tempo.png)\n\n### Build Replay\nThe 20 snapshots saved while building the level, played back in the browser: from a single ground plane to the dressed night level. Step through the timeline, switch on Diff to see what was added, moved or removed, and draw an encounter area with the pen to see how that fight changed across every build. Drag to orbit, scroll to zoom.\n\n<iframe src=\"/tools/build-replay/index.html\" title=\"Build Replay\" loading=\"lazy\" className=\"tool-embed\"></iframe>\n\nBest on a desktop with a mouse. [Open it full screen](/tools/build-replay/index.html).",
+    "technologies": ["Unity", "C#", "JavaScript", "three.js"],
+    "links": {},
     "featured": false
   }
 ]
