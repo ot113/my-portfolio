@@ -54,7 +54,7 @@
     "description": "Match-3 roguelike with run-shaping modifiers.",
     "role": "Lead Level Designer",
     "year": 2026,
-    "tags": ["Unity", "Roguelike", "Match-3"],
+    "tags": ["Love2D", "Roguelike", "Match-3"],
     "category": "Games",
     "type": "Roguelike / Match-3",
     "platform": "PC",
@@ -64,7 +64,7 @@
     ],
     "video": "",
     "overview": "## Punnet\n\nA match-3 roguelike where every run is shaped by the modifiers you pick up along the way.",
-    "technologies": ["Unity", "C#"],
+    "technologies": ["Love2D", "Lua"],
     "links": {},
     "featured": false
   },
